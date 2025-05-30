@@ -1,0 +1,20 @@
+.splide {
+    padding: 0 !important;
+}
+
+.splide__arrow svg {
+    fill: #ed1944;
+}
+
+.splide__pagination__page.is-active {
+    background-color: #ed1944;
+}
+
+.splide__pagination__page:hover {
+    background-color: #eb5875;
+
+}
+
+.splide__arrow:hover:not(:disabled) svg {
+    fill: #eb5875;
+}

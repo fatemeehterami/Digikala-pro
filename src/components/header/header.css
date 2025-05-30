@@ -1,0 +1,8 @@
+#login-div::after{
+    content: "";
+    height: 60%;
+    width: 1px;
+    background-color: #9f9f9f;
+    left: -10%;
+    position: absolute;
+}
