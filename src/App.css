@@ -1,16 +1,16 @@
 @font-face {
   font-family: "iransans";
-  src: url("public/fonts/IRANSansXV.woff") format("woff");
+  src: url("./assets/fonts/IRANSansXV.woff") format("woff");
 }
 
 @font-face {
   font-family: "iransans-reg";
-  src: url("public/fonts/IRANSansX-Regular.woff") format("woff");
+  src: url("./assets/fonts/IRANSansX-Regular.woff") format("woff");
 }
 
 @font-face {
   font-family: "iransans-bold";
-  src: url("public/fonts/IRANSansX-Bold.woff") format("woff");
+  src: url("./assets/fonts/IRANSansX-Bold.woff") format("woff");
 }
 
 @import "tailwindcss";
