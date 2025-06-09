@@ -1,5 +1,5 @@
 import React from 'react';
-import BoxRow from './boxrow';
+import BoxRow from './boxRow';
 import BoxCol from './boxCol';
 
 export default function Box({ title, icon, data, direction }) {
