@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'accept': 'application/json',
-    'one-api-token': '830023:66fd1e0e1b97f'
+    'one-api-token': '830023:6839ebf3bbf07'
   },
 });
 export const fetchMenuItem = async () => {

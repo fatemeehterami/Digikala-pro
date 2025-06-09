@@ -4,19 +4,37 @@ import { fetchMenuItem } from '../../services/header';
 
 export default function Header() {
   const [menu , setMenu] = useState([])
+  const [activeItem, setActiveItem] = useState(null);
+
+  const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
+    "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
+   "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
 
   useEffect(() => {
     const getMenuItem = async () => {
         try {
-            const data = await fetchMenuItem ()
-            setMenu(data.result || []);
-            console.log(data)
+          const data = await fetchMenuItem();
+          if (data?.result?.length) {
+            data.result.map((item, index) => {
+              item.icon = icons[index]
+            })
+            console.log("Fetched menu data:", data.result);
+            setMenu(data.result);
+          } else {
+            console.warn("No result found in fetched data.");
+          }
         } catch (err) {
             console.error(err)
         }
     }
     getMenuItem()
 }, [])
+
+useEffect(() => {
+  if (menu?.length > 0) {
+    setActiveItem(menu[0]);
+  }
+}, [menu]);
 
 
 
@@ -70,7 +88,7 @@ export default function Header() {
         <div className="flex max-w-screen-xl w-full container-4xl-w mx-auto relative justify-between md:px-4 grow">
             <div className="flex justify-center items-center gap-3 text-sm ">
                 {/* category */}
-                <div className="cursor-pointer flex gap-1 items-center justify-center ">
+                <div className="cursor-pointer flex gap-1 items-center justify-center group relative">
                     <svg className="w-7 h-7 text-black">
                         <use href="#hamburger-icon"/>
                     </svg>
@@ -79,54 +97,91 @@ export default function Header() {
                   <span className="text-base cursor-pointer">
                    دسته بندی کالا
                   </span>
-                  <div className="absolute bg-neutral-50 w-auto h-[500px] hidden px-8">
-                    <div className="flex w-full h-full">
-                     {/* right side */}
-                      <div dir="ltr" className="flex-col overflow-auto border-l border-l-neutral-200 w-56">
-                        <a 
-                         className="w-full flex items-center py-3 px-2 hover:bg-neutral-100 group">
-                          <span className="w-full h-full flex items-center flex-row-reverse gap-2 group-hover:text-red-600">
-                            <div>
-                              {/* <svg style="width: 18px; height: 18px;">
-                                <use ></use>
-                              </svg> */}
+                  <div className="absolute top-6 -right-8 bg-neutral-50 h-[500px] px-2 hidden group-hover:flex w-full max-w-screen-xl min-w-[1000px] shadow-lg z-50">
+                              <div className="flex w-full h-full">
+                                {/* right side */}
+                                <div dir="ltr" className="flex-col py-5 overflow-auto border-l border-l-neutral-200 w-72">
+                                  {menu.map((item, index) => (
+                                    <a
+                                      key={index}
+                                      onMouseEnter={() => setActiveItem(item)}
+                                      className={`w-full flex items-center py-3 px-1 hover:bg-neutral-100 group ${activeItem?.id === item.id ? "bg-neutral-100 " : ""}`}
+
+                                    >
+                                      <span className={`w-full h-full flex items-center flex-row-reverse gap-2 text-black hover:text-red-600 ${activeItem?.id === item.id ? "text-red-500 " : ""}`}>
+                                        <div>
+                                          <svg className="w-[18px] h-[18px]">
+                                            <use href={`#${item.icon}`}></use>
+                                          </svg>
+                                        </div>
+                                        <p className="text-sm text-right">{item.title}</p>
+                                      </span>
+                                    </a>
+                                  ))}
+                                </div>
+
+                                {/* left side */}
+                                <div className="flex-col w-full overflow-auto px-4 py-5">
+                                {activeItem && (
+                                          <>
+                                            {/* Main category title */}
+                                            <div className="flex flex-col gap-2 mb-2">
+                                              <a
+                                                href="#"
+                                                className="text-sm font-bold text-gray-900 hover:text-red-600 cursor-pointer flex items-center gap-2"
+                                              >
+                                                همه محصولات {activeItem.title}
+                                              </a>
+                                            </div>
+                                            <div className="grid grid-cols-3 gap-6 w-full items-start justify-start">
+                                            {/* Child categories */}
+                                            {activeItem.children?.map((child, index) => (
+                                              <div
+                                                key={index}
+                                                className={`flex flex-col shrink ${
+                                                  child.children?.length ? "gap-2" : "gap-0"
+                                                }`}
+                                              >
+                                                {/* Child title */}
+                                                <a
+                                                  href="#"
+                                                  className="text-sm font-medium flex justify-start items-center gap-1 text-gray-800 hover:text-red-600 cursor-pointer"
+                                                >
+                                                  <div className="text-red-500 hidden md:block">|</div>
+                                                  {child.title}
+                                                  <svg className="w-3 h-6">
+                                                    <use href="#left-arrowKey"></use>
+                                                  </svg>
+                                                </a>
+
+                                                {/* Sub-child links */}
+                                                {child.children?.length > 0 && (
+                                                  <div className="pl-2 flex flex-col gap-1">
+                                                    {child.children.map((subChild, subIndex) => (
+                                                      <a
+                                                        key={subIndex}
+                                                        href={subChild.url?.url || "#"}
+                                                        className="text-sm text-gray-600 hover:text-red-500 cursor-pointer"
+                                                      >
+                                                        {subChild.title}
+                                                      </a>
+                                                    ))}
+                                                  </div>
+                                                )}
+                                              </div>
+                                            ))}
+                                          </div>
+                                          </>
+                                        )}
+
+                                </div>
+
+
+                              </div>
                             </div>
-                            <p className="text-sm text-right">
-                              {/* {{item.title}} */}
-                            </p>
-                          </span>
-                        </a>
-                      </div>
-                     {/* left side */}
-                      <div className="flex-col w-full overflow-auto px-5 pt-5">
-                        <div className="flex h-full w-full">
-                          <div className="flex gap-3 justify-center items-center">
-                            <span>همه محصولات</span>
-                            <div className="grid grid-cols-2 gap-2 w-96">
-                              <a 
-                              className="text-sm decoration-0 text-gray-700 hover:text-red-500 cursor-pointer flex">
-                                {/* {{ child.title }} */}
-                              </a>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                              <a 
-                                 className="text-sm text-gray-700 hover:text-red-600 cursor-pointer">
-                                {/* {{ subChild.title }} */}
-                              </a>
-                            </div>
-                            {/* <svg style="width: 18px; height: 18px;">
-                                <use href="#leftArrow"></use>
-                            </svg> */}
-                          </div>
-                          <div className="flex flex-col justify-center items-start">
-                            
-                          </div>
-                        </div>
+
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
 
 
 

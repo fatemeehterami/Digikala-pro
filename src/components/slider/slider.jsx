@@ -18,21 +18,6 @@ const sliders = [
 
 export default function Slider() {
     const splideRef = useRef(null);
-    // const prevArrowRef = useRef(null);
-    // const nextArrowRef = useRef(null);
-    // const [slider, setSlider] = useState([])
-
-    // useEffect(() => {
-    //     const getBanner = async () => {
-    //         try {
-    //             const data = await fetchMainBanner()
-    //             setSlider(data.results || []);
-    //         } catch (err) {
-    //             console.error(err)
-    //         }
-    //     }
-    //     getBanner()
-    // }, [])
 
     return (
       <div id="main-slider" className="main-slider w-full">
@@ -66,25 +51,6 @@ export default function Slider() {
                 </SplideSlide>
               ))}
           </SplideTrack>
-
-          {/* <div className="splide__arrows">
-            <button
-              ref={prevArrowRef}
-              className="splide__arrow splide__arrow--prev focusable focus:bg-main-focus-menu focus:text-white focus:outline-none"
-              data-sn-focusable="true"
-              data-sn-group="banner"
-              aria-label="اسلاید قبلی"
-              // onKeyDown={handleKeyDown}
-            />
-            <button
-              ref={nextArrowRef}
-              className="splide__arrow splide__arrow--next focusable focus:bg-main-focus-menu focus:text-white focus:outline-none"
-              data-sn-focusable="true"
-              data-sn-group="banner"
-              aria-label="اسلاید بعدی"
-              // onKeyDown={handleKeyDown}
-            />
-          </div> */}
         </Splide>
       </div>
     );

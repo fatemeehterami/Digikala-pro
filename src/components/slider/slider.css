@@ -3,15 +3,15 @@
 }
 
 .splide__arrow svg {
-    fill: #ed1944;
+    fill: #ed1944 !important;
 }
 
 .splide__pagination__page.is-active {
-    background-color: #ed1944;
+    background-color: #ed1944 !important;
 }
 
 .splide__pagination__page:hover {
-    background-color: #eb5875;
+    background-color: #eb5875 !important;
 
 }
 
