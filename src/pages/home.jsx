@@ -4,6 +4,8 @@ import { fetchHomeItem } from "../services/home";
 import Box from "../components/boxes/box";
 import HomeRowSections from "../components/rows/row";
 import BrandBox from "../components/homeSilder/brandBox";
+import AdvFour from "../components/advertisment/advFour";
+import AdvTwo from "../components/advertisment/advTwo";
 
 export default function Home() {
   const [boxRow ,setboxRow] =useState([])
@@ -37,7 +39,9 @@ export default function Home() {
   return (
     <>
       <Slider />
+      <AdvFour/>
       <BrandBox/>
+      <AdvTwo/>
       {homes.length >= 4 && (
         <HomeRowSections sections={homes.slice(0, 4)} />
       )}

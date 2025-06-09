@@ -1,0 +1,18 @@
+const advs = [
+    { id: 1, src: "adv/5.webp", alt: "تبلیغات",url:""},
+    { id: 2, src: "adv/6.webp", alt: "تبلیغات", url:""},
+  ];
+
+export default function AdvTwo() {
+    return(
+        <div className="max-w-screen-xl my-8 flex mx-auto w-full">
+            <div className="flex justify-center items-center gap-4">
+                {advs.map((item, index) => (
+                    <div className="w-2/4" key={index}>
+                        <img className="rounded-2xl w-full"  src={item.src} alt={item.alt} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
