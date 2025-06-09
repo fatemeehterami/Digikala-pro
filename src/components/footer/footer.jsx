@@ -5,7 +5,7 @@ export default function Footer() {
       {/* footer logo */}
         <div className="flex justify-between items-center">
             <div className="mb-6 md:mb-0">
-                <a href="#" className="flex items-center">
+                <a href="/" className="flex items-center">
                     <img src="imgs/digi-logo.png" className="h-7 me-3" alt="digi Logo" />
                 </a>
             </div>

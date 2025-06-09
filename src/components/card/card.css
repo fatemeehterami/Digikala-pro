@@ -1,0 +1,8 @@
+.vitrin-slider .splide__list {
+    margin-top: 20px !important;
+    height: 320px;
+}
+
+.vitrin-slider .splide {
+    padding: 0;
+}

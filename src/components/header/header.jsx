@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './header.css'
 import { fetchMenuItem } from '../../services/header';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [menu , setMenu] = useState([])
   const [activeItem, setActiveItem] = useState(null);
-
+  const navigate = useNavigate();
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
    "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
@@ -18,7 +20,7 @@ export default function Header() {
             data.result.map((item, index) => {
               item.icon = icons[index]
             })
-            console.log("Fetched menu data:", data.result);
+            console.log(data.result)
             setMenu(data.result);
           } else {
             console.warn("No result found in fetched data.");
@@ -44,7 +46,7 @@ useEffect(() => {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3.5 w-full gap-3">
             <div className="flex flex-1 items-center grow gap-4">
                 {/* logo */}
-                <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="imgs/digi-logo.png" className="h-7" alt="digi logo" />
                 </a>
                 {/*  search box */}
@@ -105,7 +107,7 @@ useEffect(() => {
                                     <a
                                       key={index}
                                       onMouseEnter={() => setActiveItem(item)}
-                                      className={`w-full flex items-center py-3 px-1 hover:bg-neutral-100 group ${activeItem?.id === item.id ? "bg-neutral-100 " : ""}`}
+                                      className={`w-full flex items-center py-3 px-1 cursor-default hover:bg-neutral-100 group ${activeItem?.id === item.id ? "bg-neutral-100 " : ""}`}
 
                                     >
                                       <span className={`w-full h-full flex items-center flex-row-reverse gap-2 text-black hover:text-red-600 ${activeItem?.id === item.id ? "text-red-500 " : ""}`}>
@@ -126,12 +128,12 @@ useEffect(() => {
                                           <>
                                             {/* Main category title */}
                                             <div className="flex flex-col gap-2 mb-2">
-                                              <a
-                                                href="#"
+                                              <Link
+                                                to={`/category/${activeItem.id}`}
                                                 className="text-sm font-bold text-gray-900 hover:text-red-600 cursor-pointer flex items-center gap-2"
                                               >
                                                 همه محصولات {activeItem.title}
-                                              </a>
+                                              </Link>
                                             </div>
                                             <div className="grid grid-cols-3 gap-6 w-full items-start justify-start">
                                             {/* Child categories */}
@@ -157,15 +159,22 @@ useEffect(() => {
                                                 {/* Sub-child links */}
                                                 {child.children?.length > 0 && (
                                                   <div className="pl-2 flex flex-col gap-1">
-                                                    {child.children.map((subChild, subIndex) => (
-                                                      <a
-                                                        key={subIndex}
-                                                        href={subChild.url?.url || "#"}
-                                                        className="text-sm text-gray-600 hover:text-red-500 cursor-pointer"
-                                                      >
-                                                        {subChild.title}
-                                                      </a>
-                                                    ))}
+                                                        {child.children.map((subChild, subIndex) => {
+                                                          return (
+                                                            <a
+                                                              key={subIndex}
+                                                              onClick={() => {
+                                                                const urlParts = subChild.url.url.split('/').filter(Boolean);
+                                                                const slug = urlParts[urlParts.length - 1];
+                                                                navigate(`/search/${slug}/`);
+                                                              }}
+                                                              className="text-sm text-gray-600 hover:text-red-500 cursor-pointer"
+                                                            >
+                                                              {subChild.title}
+                                                            </a>
+                                                          );
+                                                        })}
+
                                                   </div>
                                                 )}
                                               </div>

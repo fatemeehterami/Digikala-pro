@@ -1,7 +1,8 @@
+import { Routes, Route } from 'react-router-dom';
 import Footer from './components/footer/footer'
 import Header from './components/header/header'
-import Slider from './components/slider/slider'
-
+import Home from './pages/home'
+import ProductsPage from './pages/productsPage'
 import './App.css'
 
 function App() {
@@ -9,7 +10,10 @@ function App() {
   return (
     <>
     <Header/>
-    <Slider/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:categoryUrl" element={<ProductsPage />} />
+      </Routes>
     <Footer/>
   </>
   )

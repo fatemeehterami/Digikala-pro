@@ -1,20 +1,20 @@
-.splide {
+#main-slider .splide {
     padding: 0 !important;
 }
 
-.splide__arrow svg {
+#main-slider .splide__arrow svg {
     fill: #ed1944 !important;
 }
 
-.splide__pagination__page.is-active {
+#main-slider .splide__pagination__page.is-active {
     background-color: #ed1944 !important;
 }
 
-.splide__pagination__page:hover {
+#main-slider .splide__pagination__page:hover {
     background-color: #eb5875 !important;
 
 }
 
-.splide__arrow:hover:not(:disabled) svg {
+#main-slider .splide__arrow:hover:not(:disabled) svg {
     fill: #eb5875;
 }

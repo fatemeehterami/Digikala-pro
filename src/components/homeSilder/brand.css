@@ -1,0 +1,8 @@
+#brandSlider .splide__arrow svg {
+    width: 30px;
+    height: 30px;
+    fill: oklch(44.6% 0.03 256.802);
+    border: 1px solid oklch(44.6% 0.03 256.802);
+    padding: 5px;
+    border-radius: 100%;
+}
