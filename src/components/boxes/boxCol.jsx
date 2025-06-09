@@ -9,7 +9,7 @@ export default function BoxRow({ title, img, price ,id , discount,priceDiscount}
        gap-2 cursor-pointer h-auto p-2 w-fit 
            transition-transform duration-200"
     >
-      <div className='w-56 h-56'>
+      <div className='w-40 h-40'>
         <img className="w-full h-full object-cover" src={img} alt={title} />
       </div>
       <div className={`flex ${discount ? 'justify-between':'justify-end'} items-center w-full`}>
