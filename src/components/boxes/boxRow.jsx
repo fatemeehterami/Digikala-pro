@@ -9,7 +9,7 @@ export default function BoxRow({ title, img ,id}) {
        gap-2 cursor-pointer h-auto p-2 w-fit 
            transition-transform duration-200"
     >
-      <div className='w-40 h-40'>
+      <div className='w-28 h-28'>
         <img className="w-full h-full object-cover" src={img} alt={title} />
       </div>
         <p
