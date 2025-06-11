@@ -1,0 +1,13 @@
+#detailSlider .splide__arrow svg {
+    fill: #ed1944 !important;
+    width: 25px;
+    height: 25px;
+}
+
+#detailSlider .splide__arrow:hover:not(:disabled) svg {
+    fill: #eb5875;
+}
+
+#detailSlider .splide {
+    padding: 10px 1.5rem !important;
+}

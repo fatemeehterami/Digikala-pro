@@ -22,9 +22,9 @@ export default function Box({ title, icon, data, direction }) {
                   id={item.id}
                   title={item.title_fa}
                   img={item.images.main}
-                  price={item.price.selling_price}
-                  discount={item.price.discount_percent}
-                  priceDiscount={item.price.rrp_price}
+                  price={item.price?.selling_price}
+                  discount={item.price?.discount_percent}
+                  priceDiscount={item.price?.rrp_price}
                 />
               ) : (
                 <BoxRow

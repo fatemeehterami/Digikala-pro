@@ -16,8 +16,8 @@ export default function Image({ images }) {
   if (!images) return <div>No images found.</div>;
 
   return (
-    <div>
-      <div className="w-64 h-64 border mb-4">
+    <div id="detailSlider" className="flex justify-center items-center flex-col my-5">
+      <div className="w-64 h-64 mb-4">
         <img
           src={mainImage}
           alt="Main Product"
@@ -48,7 +48,7 @@ export default function Image({ images }) {
             {thumbnails.map((item, index) => (
               <SplideSlide
                 key={index}
-                className="cursor-pointer border p-1"
+                className="cursor-pointer p-1"
                 onClick={() => handleThumbnailClick(item)}
               >
                 <img
@@ -65,7 +65,7 @@ export default function Image({ images }) {
           {thumbnails.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer border p-1"
+              className="cursor-pointer p-1"
               onClick={() => handleThumbnailClick(item)}
             >
               <img
