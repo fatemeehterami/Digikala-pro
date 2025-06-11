@@ -20,7 +20,6 @@ export default function Header() {
             data.result.map((item, index) => {
               item.icon = icons[index]
             })
-            console.log(data.result)
             setMenu(data.result);
           } else {
             console.warn("No result found in fetched data.");

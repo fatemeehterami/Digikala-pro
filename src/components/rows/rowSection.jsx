@@ -23,7 +23,6 @@ export default function RowSection({ title, data }) {
         </div>
           <a className='text-blue-600 mt-3 flex justify-center gap-2 items-center cursor-pointer decoration-0 text-sm'
           href='#'>
-
             مشاهده 
             <svg className="w-2 h-2">
               <use href="#left-arrowKey"></use>
