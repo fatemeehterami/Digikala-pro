@@ -5,12 +5,12 @@ export default function ScoreRow({ score , comments ,questions  }) {
                   <use href="#star-icon"></use>
             </svg>
             {score && <span className="text-xs">{score}</span>}
-            <div className="bg-gray-200 rounded-full py-1 px-3">
-             {comments && <span className="text-xs">{comments.toLocaleString("fa-IR")} دیدگاه</span>}
-            </div>
-            <div className="bg-gray-200 rounded-full py-1 px-3">
-             {questions && <span className="text-xs">{questions.toLocaleString("fa-IR")} پرسش</span>}
-            </div>
+            {comments &&<div className="bg-gray-200 rounded-full py-1 px-3">
+              <span className="text-xs">{comments.toLocaleString("fa-IR")} دیدگاه</span>
+            </div>}
+            {questions &&<div className="bg-gray-200 rounded-full py-1 px-3">
+              <span className="text-xs">{questions.toLocaleString("fa-IR")} پرسش</span>
+            </div>}
         </div>
       );
     }
