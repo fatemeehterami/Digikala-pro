@@ -59,7 +59,7 @@ export default function DetailPage() {
           <UrlProduct brand={data.brand.title_fa} categoryTitle={data.category_title}/>
           <p className="text-black text-xl font-semibold my-2">{data.title_fa}</p>
           <p className="text-gray-400 text-xs my-3">{data.title_en}</p>
-          <ScoreRow comments={data.comments.count} questions={data.questions.count} score={data.variants?.digiclub?.point}/>
+          <ScoreRow comments={data.comments?.count} questions={data.questions?.count} score={data.variants?.digiclub?.point}/>
         </div>
       </div>
     </div>
