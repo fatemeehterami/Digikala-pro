@@ -7,6 +7,8 @@ import UrlPage from "../components/url/urlPage";
 import Loading from "../components/loading/loading";
 import UrlProduct from "../components/url/urlProduct";
 import ScoreRow from "../components/details/scoreRow";
+import ColorsPrice from "../components/details/colorPrice";
+import Features from "../components/details/features";
 
 export default function DetailPage() {
   const [data, setData] = useState(null);
@@ -58,8 +60,20 @@ export default function DetailPage() {
         <div className="col-span-2 flex flex-col justify-start">
           <UrlProduct brand={data.brand.title_fa} categoryTitle={data.category_title}/>
           <p className="text-black text-xl font-semibold my-2">{data.title_fa}</p>
-          <p className="text-gray-400 text-xs my-3">{data.title_en}</p>
-          <ScoreRow comments={data.comments?.count} questions={data.questions?.count} score={data.variants?.digiclub?.point}/>
+          <hr className="text-gray-200" />
+          <p className="text-gray-400 text-xs my-2">{data.title_en}</p>
+          <ScoreRow comments={data.comments?.count} questions={data.questions?.count} score={data.variants?.seller?.stars}/>
+          <ColorsPrice variants={data.variants} parameters={data.parameters}/>
+          <Features attributes={data.review?.attributes}/>
+          {data.category?.return_reason_alert &&
+          <div className="w-3/4 flex justify-center items-start gap-2">
+            <svg className="w-8 h-8 text-gray-500">
+                <use href="#infoFill"></use>
+              </svg>
+            <p className="text-justify text-xs text-gray-600 leading-5">
+              {data.category?.return_reason_alert}
+            </p>
+          </div>}
         </div>
       </div>
     </div>
