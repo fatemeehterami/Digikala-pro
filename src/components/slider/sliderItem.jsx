@@ -4,11 +4,11 @@ export default function SliderItem({  src , alt , url }) {
   return (
     <div
       aria-label={`selected-${alt}`}
-      className="flex flex-col h-auto justify-start items-start gap-3 cursor-pointer  relative focus:outline-none w-full transition-transform duration-200"
+      className="flex flex-col h-auto lg:rounded-none px-1 lg:px-0 rounded-2xl justify-start items-start gap-3 cursor-pointer  relative focus:outline-none w-full transition-transform duration-200"
     >
-      <a href={url} className="decoration-0 w-full">
+      <a href={url} className="decoration-0 w-full ">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover lg:rounded-none rounded-2xl"
           src={src}
           alt={alt}
         />

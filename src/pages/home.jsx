@@ -16,17 +16,17 @@ export default function Home() {
     const getHomeItem = async () => {
         try {
           const data = await fetchHomeItem();
-          setboxRow(data.result.trending)
-          setboxCol(data.result.selling_and_sales)
+          setboxRow(data.result?.trending)
+          setboxCol(data.result?.selling_and_sales)
           const sections = [
-            data.result.home_1,
-            data.result.home_2,
-            data.result.home_3,
-            data.result.home_4,
-            data.result.home_5,
-            data.result.home_6,
-            data.result.home_7,
-            data.result.home_8,
+            data.result?.home_1,
+            data.result?.home_2,
+            data.result?.home_3,
+            data.result?.home_4,
+            data.result?.home_5,
+            data.result?.home_6,
+            data.result?.home_7,
+            data.result?.home_8,
           ].filter(Boolean);
   
           setHomes(sections);
@@ -45,14 +45,14 @@ export default function Home() {
       {homes.length >= 4 && (
         <HomeRowSections sections={homes.slice(0, 4)} />
       )}
-      {boxCol.products && (
-        <Box title={boxCol.title} icon="discount" data={boxCol.products}  direction="col"/>
+      {boxCol?.products && (
+        <Box title={boxCol?.title} icon="discount" data={boxCol?.products}  direction="col"/>
       )}
       {homes.length >= 8 && (
         <HomeRowSections sections={homes.slice(4, 8)} />
       )}
-      {boxRow.products && (
-        <Box title={boxRow.title} icon="searchTrend" data={boxRow.products}  direction="row"/>
+      {boxRow?.products && (
+        <Box title={boxRow?.title} icon="searchTrend" data={boxRow?.products}  direction="row"/>
       )}
     </>
   );

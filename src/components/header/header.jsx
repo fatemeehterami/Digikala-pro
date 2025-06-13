@@ -40,16 +40,16 @@ useEffect(() => {
 
 
     return (
-        <header className="w-full pb-3 flex flex-col relative z-2 bg-white border-b border-gray-200 font-[iransans]">
-    <div className=" flex w-full container-4xl-w mx-auto relative justify-between md:px-4 grow ">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3.5 w-full gap-3">
+        <header className="lg:w-full pb-3 flex flex-col relative z-2 bg-white border-b border-gray-200 font-[iransans]">
+    <div className=" flex w-full container-4xl-w mx-auto relative justify-between px-4 grow ">
+        <div className="lg:max-w-screen-xl flex flex-wrap items-center justify-between mx-auto lg:p-3.5 py-2 w-full gap-3">
             <div className="flex flex-1 items-center grow gap-4">
                 {/* logo */}
-                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" className="lg:flex items-center space-x-3 rtl:space-x-reverse hidden">
                     <img src="imgs/digi-logo.png" className="h-7" alt="digi logo" />
                 </a>
                 {/*  search box */}
-                <form className="max-w-md w-full">
+                <form className="lg:max-w-md w-full">
                     <div className="relative">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className="w-6 h-6 text-black">
@@ -63,20 +63,20 @@ useEffect(() => {
             </div>
             <div className="flex items-center justify-end">
                    {/* bell */}
-                    <div className="ml-7">
+                    <div className="lg:ml-7 lg:bg-transparent bg-gray-100 p-2 rounded-full">
                         <svg className="w-7 h-7 text-black">
                             <use href="#bell-icon"/>
                         </svg>
                     </div>
                     {/* login */}
-                    <button id="login-div" className="border-gray-200 border-1 cursor-pointer p-2 flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
+                    <button id="login-div" className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
                         <span>ورود | ثبت‌نام</span>
                         <svg className="w-7 h-7 text-black">
                             <use href="#login-icon"/>
                         </svg>
                     </button>
                     {/* shopping card */}
-                    <div className="mr-10">
+                    <div className="mr-10 lg:flex hidden">
                         <svg className="w-7 h-7 text-black">
                             <use href="#shoppingCard-icon"/>
                         </svg>
@@ -85,9 +85,9 @@ useEffect(() => {
         </div>
     </div>
     {/* main menu */}
-    <nav className="flex items-center flex-wrap justify-between bg-neutral-000 md:px-4 grow flex-col">
-        <div className="flex max-w-screen-xl w-full container-4xl-w mx-auto relative justify-between md:px-4 grow">
-            <div className="flex justify-center items-center gap-3 text-sm ">
+    <nav className="flex items-center flex-wrap justify-between bg-neutral-000 px-4 grow flex-col">
+        <div className="flex max-w-screen-xl w-full container-4xl-w mx-auto relative justify-between lg:px-4 grow">
+            <div className="lg:flex hidden justify-center items-center gap-3 text-sm ">
                 {/* category */}
                 <div className="cursor-pointer flex gap-1 items-center justify-center group relative">
                     <svg className="w-7 h-7 text-black">
@@ -211,22 +211,23 @@ useEffect(() => {
                 </div>
             </div>
             {/* city */}
-            <div className="px-3 py-1 bg-[#fff4ea] rounded-full cursor-pointer ">
+            <div className="px-3 py-1 lg:bg-[#fff4ea] rounded-full cursor-pointer ">
                 <a href="#" className="decoration-0 flex items-center justify-between gap-2">
-                    <svg className="w-7 h-7 text-[#f57f17]">
+                    <svg className="lg:w-7 w-4 lg:h-7 h-4 text-black lg:text-[#f57f17]">
                         <use href="#location-icon"/>
                     </svg>
-                    <p className="text-xs font-bold text-[#f57f17]">شهر خود را انتخاب کنید</p>
+                    <p className="text-xs font-normal text-black flex justify-center items-center gap-2 lg:hidden">
+                      انتخاب استان و شهر
+                    <svg className="w-2 h-2 text-black">
+                      <use href="#left-arrowKey"></use>
+                    </svg>
+                      </p>
+                    <p className="text-xs lg:font-bold text-black hidden lg:block lg:text-[#f57f17]">شهر خود را انتخاب کنید</p>
                 </a>
             </div>
         </div>
     </nav>
 
-
-
-
-
-    
 </header>
     )
 }

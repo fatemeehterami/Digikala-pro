@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import "./slider.css"
 import SliderItem from "./sliderItem";
@@ -17,41 +17,48 @@ const sliders = [
   ];
 
 export default function Slider() {
-    const splideRef = useRef(null);
+  const splideRef = useRef(null);
+  const [isLgScreen, setIsLgScreen] = useState(false);
 
-    return (
-      <div id="main-slider" className="main-slider w-full">
-        <Splide
-          className="relative"
-          ref={splideRef}
-          hasTrack={false}
-          options={{
-            lazyLoad: false,
-            autoplay: true,
-            interval: 3000,
-            preloadPages: 2,
-            direction: "rtl",
-            type: "loop",
-            cover: true,
-            keyboard: false,
-            arrows: true,
-            pagination: true,
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsLgScreen(window.innerWidth >= 1024);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+
+  return (
+    <div id="main-slider" className="main-slider w-full pt-3">
+      <Splide
+        className="relative"
+        ref={splideRef}
+        hasTrack={false}
+        options={{
+          lazyLoad: false,
+          autoplay: true,
+          interval: 3000,
+          preloadPages: 2,
+          direction: "rtl",
+          type: "loop",
+          cover: true,
+          keyboard: false,
+          arrows: isLgScreen ? true : false,
+          pagination: true,
           }}
-          aria-label="اسلایدر بنر"
-        >
-          <SplideTrack className="w-full ">
-            {sliders.length > 0 &&
-              sliders.map((item, index) => (
-                <SplideSlide key={index} className="z-0 relative">
-                  <SliderItem
-                    src={item.src}
-                    alt={item.alt}
-                    url={item.url}
-                  />
-                </SplideSlide>
-              ))}
-          </SplideTrack>
-        </Splide>
-      </div>
-    );
+        aria-label="اسلایدر بنر"
+      >
+        <SplideTrack className="w-full">
+          {sliders.map((item, index) => (
+            <SplideSlide key={index} className="z-0 relative">
+              <SliderItem src={item.src} alt={item.alt} url={item.url} />
+            </SplideSlide>
+          ))}
+        </SplideTrack>
+      </Splide>
+    </div>
+  );
 }

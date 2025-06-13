@@ -7,10 +7,10 @@ const advs = [
 
 export default function AdvFour() {
     return(
-        <div className="max-w-screen-xl my-8 flex mx-auto w-full">
-            <div className="flex justify-center items-center gap-4">
+        <div className="max-w-screen-xl my-8 flex  mx-auto w-full">
+            <div className="lg:flex justify-center items-center gap-4 grid grid-cols-2 lg:px-0 px-2">
                 {advs.map((item, index) => (
-                    <div className="w-1/4" key={index}>
+                    <div className="lg:w-1/4" key={index}>
                         <img className="rounded-2xl w-full"  src={item.src} alt={item.alt} />
                     </div>
                 ))}
