@@ -244,7 +244,7 @@ export default function Footer() {
       </div>
     </div>
 </footer>
-      <div className='bottom-0 fixed w-full bg-white py-3 px-4 block lg:hidden'>
+      <div className='bottom-0 fixed w-full bg-white py-3 px-4 block lg:hidden border-t border-t-gray-300'>
                 <div className='grid grid-cols-4'>
                    <a className='flex justify-center items-center flex-col gap-1 decoration-0' href="/">
                     <svg className="w-7 h-7">
