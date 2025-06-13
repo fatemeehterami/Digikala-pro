@@ -1,29 +1,45 @@
+import { useState } from "react";
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
     return (
     <footer className="bg-white font-[iransans] border-t border-gray-200">
     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       {/* footer logo */}
-        <div className="flex justify-between items-center">
-            <div className="mb-6 md:mb-0">
+        <div className="flex lg:justify-between justify-center items-center lg:w-auto w-full">
+            <div className="mb-6 md:mb-0 hidden lg:inline">
                 <a href="/" className="flex items-center">
                     <img src="imgs/digi-logo.png" className="h-7 me-3" alt="digi Logo" />
                 </a>
             </div>
-            <button className="border-gray-200 border-1 text-neutral-500 cursor-pointer px-4 py-2 flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
-                <img src="icons/up-arrow.svg" className="h-3.5" alt="uparrow" />
+            <button className="lg:border-gray-200 lg:border-1 border-0 lg:text-neutral-500 text-cyan-400 
+            cursor-pointer px-4 py-2 flex justify-center items-center gap-3 flex-row-reverse
+             rounded-xl relative " onClick={scrollToTop}>
+                <svg className="w-3 h-3 lg:text-neutral-500 text-cyan-400 ">
+                  <use href="#up-arrowKey"></use>
+                </svg>
                 <span className="text-sm">بازگشت به بالا</span>
             </button>
         </div>
       {/* phones */}
-        <div className="mb-8 mt-4 md:mt-3 md:mb-0 flex items-center flex-wrap lg:flex-nowrap text-body-2 text-neutral-700">
+        <div className="mb-3 mt-4 md:mt-3 md:mb-0 flex items-center  gap-2   text-neutral-700">
             <p className="shrink-0 text-xs">تلفن پشتیبانی ۰۰۰۰۰۰۰۰ - ۰۲۱</p>
-            <div className="px-5 text-neutral-400 hidden md:block">|</div>
+            <div className="px-5 text-neutral-400 block">|</div>
             <p className="shrink-0 text-xs">۰۲۱-۰۰۰۰۰۰۰۰</p>
             <div className="px-5 text-neutral-400 hidden md:block">|</div>
-            <p className="w-full mt-1 md:mt-0 text-xs">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم</p>
+            <p className="w-full mt-1 md:mt-0 text-xs hidden md:inline">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم</p>
         </div>
       {/* equipments */}
-        <div className="flex my-8 items-center justify-between select-none hidden lg:flex ">
+        <div className="lg:flex my-8 items-center justify-between select-none hidden  ">
             <div className="flex justify-between items-center w-full">
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
@@ -65,7 +81,7 @@ export default function Footer() {
       {/* whith us box */}
         <div className="flex justify-between items-center w-full">
           {/* with digikala */}
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 grow w-[70%] ">
+          <div className="lg:grid hidden grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 grow w-[70%] ">
             <div>
               <h2 className="mb-6 text-base font-semibold text-gray-900 uppercase ">با دیجی‌کالا</h2>
               <ul className="text-gray-500  font-medium">
@@ -124,8 +140,69 @@ export default function Footer() {
               </ul>
             </div>
           </div>
+
+          <div className="lg:hidden w-full flex flex-col space-y-4 px-4 py-6 text-right">
+            {/* Section 1 */}
+            <div className="border-b border-b-gray-300 pb-2">
+              <div
+                className="cursor-pointer font-semibold text-gray-800 flex justify-between items-center"
+                onClick={() => toggleSection('digikala')}
+              >
+                <span >با دیجی‌کالا</span>
+                <span className="text-gray-500">{openSection === 'digikala' ? '−' : '+'}</span>
+              </div>
+              {openSection === 'digikala' && (
+                <ul className="text-sm mt-4 text-gray-600 space-y-2 pr-2 flex flex-col justify-start items-start gap-2">
+                  <li><a href="#">اتاق خبر دیجی‌کالا</a></li>
+                  <li><a href="#">فروش در دیجی‌کالا</a></li>
+                  <li><a href="#">فرصت‌های شغلی</a></li>
+                  <li><a href="#">گزارش تخلف در دیجی‌کالا</a></li>
+                  <li><a href="#">تماس با دیجی‌کالا</a></li>
+                  <li><a href="#">درباره دیجی‌کالا</a></li>
+                </ul>
+              )}
+            </div>
+
+            {/* Section 2 */}
+            <div className="border-b border-b-gray-300 pb-2">
+              <div
+                className="cursor-pointer font-semibold text-gray-800 flex justify-between items-center"
+                onClick={() => toggleSection('customer')}
+              >
+                <span>خدمات مشتریان</span>
+                <span className="text-gray-500">{openSection === 'customer' ? '−' : '+'}</span>
+              </div>
+              {openSection === 'customer' && (
+                <ul className="text-sm mt-4 text-gray-600 space-y-2 pr-2 flex flex-col justify-start items-start gap-2">
+                  <li><a href="#">پاسخ به پرسش‌های متداول</a></li>
+                  <li><a href="#">رویه‌های بازگرداندن کالا</a></li>
+                  <li><a href="#">شرایط استفاده</a></li>
+                  <li><a href="#">حریم خصوصی</a></li>
+                  <li><a href="#">گزارش باگ</a></li>
+                </ul>
+              )}
+            </div>
+
+            {/* Section 3 */}
+            <div className="pb-2">
+              <div
+                className="cursor-pointer font-semibold text-gray-800 flex justify-between items-center"
+                onClick={() => toggleSection('guide')}
+              >
+                <span>راهنمای خرید از دیجی‌کالا</span>
+                <span className="text-gray-500">{openSection === 'guide' ? '−' : '+'}</span>
+              </div>
+              {openSection === 'guide' && (
+                <ul className="text-sm mt-4 text-gray-600 space-y-2 pr-2 flex flex-col justify-start items-start gap-2">
+                  <li><a href="#">نحوه ثبت سفارش</a></li>
+                  <li><a href="#">رویه ارسال سفارش</a></li>
+                  <li><a href="#">شیوه‌های پرداخت</a></li>
+                </ul>
+              )}
+            </div>
+          </div>
           {/* whith us */}
-          <div className="grow w-[30%]">
+          <div className="grow w-[30%] lg:inline hidden">
             <h2 className="mb-4 text-base font-semibold text-gray-900 ">همراه ما باشید!</h2>
             {/* icons */}
             <div className="flex items-center justify-start gap-7">
