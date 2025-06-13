@@ -32,7 +32,7 @@ export default function Slider() {
 
 
   return (
-    <div id="main-slider" className="main-slider w-full pt-3 h-[200px]">
+    <div id="main-slider" className="main-slider w-full pt-3 lg:h-auto h-[200px]">
       <Splide
         className="relative"
         ref={splideRef}
