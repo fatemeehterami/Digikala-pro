@@ -189,13 +189,7 @@ useEffect(() => {
                             </div>
 
                       </div>
-                    </div>
-
-
-
-
-
-
+                </div>
 
                 <div className=" text-neutral-600 hidden md:block">|</div>
                 {/* menu items */}
@@ -210,6 +204,7 @@ useEffect(() => {
                     <a href="#" className="decoration-0 px-2 text-[#62666d]">سوالی دارید؟</a>
                 </div>
             </div>
+           
             {/* city */}
             <div className="px-3 py-1 lg:bg-[#fff4ea] rounded-full cursor-pointer ">
                 <a href="#" className="decoration-0 flex items-center justify-between gap-2">

@@ -12,6 +12,7 @@ export default function Footer() {
     setOpenSection(openSection === section ? null : section);
   };
     return (
+      <>
     <footer className="bg-white font-[iransans] border-t border-gray-200">
     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       {/* footer logo */}
@@ -243,6 +244,36 @@ export default function Footer() {
       </div>
     </div>
 </footer>
+      <div className='bottom-0 fixed w-full bg-white py-3 px-4 block lg:hidden'>
+                <div className='grid grid-cols-4'>
+                   <a className='flex justify-center items-center flex-col gap-1 decoration-0' href="/">
+                    <svg className="w-7 h-7">
+                        <use href="#home1Fill"/>
+                      </svg>
+                      <p className="text-sm">خانه</p>
+                   </a>
+                   <div className='flex justify-center items-center flex-col gap-1'>
+                    <svg className="w-7 h-7 ">
+                        <use href="#categoryOutline"/>
+                      </svg>
+                      <p className="text-sm">دسته بندی</p>
+                   </div>
+                   <div className='flex justify-center items-center flex-col gap-1'>
+                    <svg className="w-7 h-7 ">
+                        <use href="#cartOff"/>
+                      </svg>
+                      <p className="text-sm">سبد خرید</p>
+                   </div>
+                   <div className='flex justify-center items-center flex-col gap-1'>
+                    <svg className="w-7 h-7 ">
+                        <use href="#profileOff"/>
+                      </svg>
+                      <p className="text-sm">دیجی‌کالای من</p>
+                   </div>
+                </div>
+            </div>
+
+</>
 )
 }
 
