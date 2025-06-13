@@ -29,7 +29,7 @@ const brands = [
     const bennerRef = useRef(null);
   
     return (
-      <div id="brandSlider" className="border flex flex-col items-center justify-center border-gray-200 max-w-screen-xl mx-auto rounded-lg my-8">
+      <div id="brandSlider" className="border flex flex-col items-center justify-center border-gray-200 lg:max-w-screen-xl mx-auto rounded-lg my-8 lg:px-0 px-3">
         <p className="text-xl font-bold text-gray-800 mt-4 flex items-center justify-center gap-2">
         <svg className="w-5 h-5 ">
               <use href='#topBrands'></use>
@@ -37,24 +37,29 @@ const brands = [
         محبوب‌ترین برندها
         </p>
         <Splide
-          className="relative"
+          className="relative "
           ref={bennerRef}
           hasTrack={false}
           options={{
             type: "loop",
             direction: "rtl",
-            perPage: 8, 
-            padding:'20px',
-            gap: "1rem",
+            perPage: 7, 
+            gap: "5px",
             pagination: false,
             arrows: true,
             autoplay: false,
             drag: true,
             speed: 600,
             breakpoints: {
-              1024: { perPage: 6 },
-              768: { perPage: 4 },
-              480: { perPage: 2 },
+              1024: {
+                perPage: 5,
+              },
+              768: {
+                perPage: 4,
+              },
+              480: {
+                perPage: 3,
+              },
             },
           }}
           aria-label="اسلایدر برند"

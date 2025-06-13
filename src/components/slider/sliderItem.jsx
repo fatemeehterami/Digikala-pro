@@ -8,7 +8,7 @@ export default function SliderItem({  src , alt , url }) {
     >
       <a href={url} className="decoration-0 w-full ">
         <img
-          className="w-full h-full object-cover lg:rounded-none rounded-2xl"
+          className="w-full lg:h-full h-[200px] object-cover lg:rounded-none rounded-2xl"
           src={src}
           alt={alt}
         />
