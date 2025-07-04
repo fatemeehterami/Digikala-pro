@@ -11,8 +11,8 @@ export default function RowItem({ img ,id}) {
     <div
       id={id}
       onClick={handleClick}
-      className="gird grid-cols-2 cursor-pointer">
-      <div className='w-28 h-28'>
+      className="gird grid-cols-2 cursor-pointer ">
+      <div className='lg:w-28 lg:h-28 md:h-64 md:w-64 w-48 h-48'>
         <img className="w-full h-full object-cover" src={img}  />
       </div>
     </div>

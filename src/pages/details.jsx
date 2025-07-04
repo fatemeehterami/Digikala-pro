@@ -48,7 +48,7 @@ export default function DetailPage() {
       <UrlPage titleFa={data.breadcrumb} categoryTitle={data.category_title} />
       <div className="grid grid-cols-3 gap-3 w-full">
         <div className="col-span-1">
-        {data.price.badge && 
+        {data.price?.badge && 
           <div className="flex gap-3 items-center justify-between text-h5 px-5 py-3 rounded-lg bg-red-100">
             <div className="flex items-center justify-center text-red-600">
               <div>فروش ویژه</div>
@@ -58,12 +58,12 @@ export default function DetailPage() {
           <Image images={data.images} />
         </div>
         <div className="col-span-2 flex flex-col justify-start">
-          <UrlProduct brand={data.brand.title_fa} categoryTitle={data.category_title}/>
+          <UrlProduct brand={data.brand?.title_fa} categoryTitle={data.category_title}/>
           <p className="text-black text-xl font-semibold my-2">{data.title_fa}</p>
           <hr className="text-gray-200" />
           <p className="text-gray-400 text-xs my-2">{data.title_en}</p>
           <ScoreRow comments={data.comments?.count} questions={data.questions?.count} score={data.variants?.seller?.stars}/>
-          <ColorsPrice variants={data.variants} parameters={data.parameters}/>
+          <ColorsPrice variants={data.variants} parameters={data.parameters} discountPrice={data.price?.discount_percent}/>
           <Features attributes={data.review?.attributes}/>
           {data.category?.return_reason_alert &&
           <div className="w-3/4 flex justify-center items-start gap-2">

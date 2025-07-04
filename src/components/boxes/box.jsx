@@ -13,7 +13,7 @@ export default function Box({ title, icon, data, direction }) {
           <p>{title}</p>
         </div>
 
-        <div className={`grid ${direction === "col" ?'grid-cols-6':'grid-cols-4'} gap-2 w-full divide-y divide-gray-200`}>
+        <div className={`grid ${direction === "col" ?'lg:grid-cols-6 md:grid-cols-3 grid-cols-2':'lg:grid-cols-4 md:grid-cols-2 grid-cols-1'} gap-2 w-full divide-y divide-gray-200`}>
           {Array.isArray(data) && data.length > 0 &&
             data.map((item, index) => (
               direction === "col" ? (

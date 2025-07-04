@@ -12,7 +12,7 @@ export default function RowSection({ title, data }) {
           <p className='text-sm text-gray-400'>بر اساس سلیقه شما</p>
         </div>
   
-        <div className='grid grid-cols-2 gap-4 w-full'>
+        <div className='grid grid-cols-2 gap-4 w-full justify-items-center'>
           {limitedData.map(item => (
             <RowItem
               key={item.id}
