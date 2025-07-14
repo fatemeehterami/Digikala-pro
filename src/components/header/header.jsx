@@ -8,6 +8,7 @@ export default function Header() {
   const [menu , setMenu] = useState([])
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
    "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
@@ -49,14 +50,25 @@ useEffect(() => {
                     <img src="imgs/digi-logo.png" className="h-7" alt="digi logo" />
                 </a>
                 {/*  search box */}
-                <form className="lg:max-w-md w-full">
+                <form className="lg:max-w-md w-full"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (searchQuery.trim()) {
+                    const slug = searchQuery.trim().replace(/\s+/g, '-');
+                    navigate(`/search/${encodeURIComponent(slug)}`);
+                    setSearchQuery('');
+                  }
+                }}>
                     <div className="relative">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className="w-6 h-6 text-black">
                             <use href="#search-icon"/>
                         </svg>
                         </div>
-                        <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900  rounded-xl bg-gray-100 focus:ring-blue-500 focus:border-blue-500 " placeholder="جستجو" required />
+                        <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900  rounded-xl bg-gray-100 focus:ring-blue-500 focus:border-blue-500 "
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="جستجو" required />
                     </div>
                 </form>
 
@@ -163,9 +175,7 @@ useEffect(() => {
                                                             <a
                                                               key={subIndex}
                                                               onClick={() => {
-                                                                const urlParts = subChild.url.url.split('/').filter(Boolean);
-                                                                const slug = urlParts[urlParts.length - 1];
-                                                                navigate(`/search/${slug}/`);
+                                                                navigate(`/search/${encodeURIComponent(subChild.title)}`);
                                                               }}
                                                               className="text-sm text-gray-600 hover:text-red-500 cursor-pointer"
                                                             >

@@ -1,10 +1,11 @@
 import React from 'react';
 import RowItem from './rowItem';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function RowSection({ title, data }) {
     const limitedData = data.slice(0, 4);
-  
+    const navigate = useNavigate();
     return (
       <div className='flex flex-col py-3 '>
         <div className='flex justify-center items-start gap-3 flex-col mb-4'>
@@ -22,7 +23,9 @@ export default function RowSection({ title, data }) {
           ))}
         </div>
           <a className='text-blue-600 mt-3 flex justify-center gap-2 items-center cursor-pointer decoration-0 text-sm'
-          href='#'>
+          onClick={() => {
+            navigate(`/search/${encodeURIComponent(title)}`);
+          }}>
             مشاهده 
             <svg className="w-2 h-2">
               <use href="#left-arrowKey"></use>

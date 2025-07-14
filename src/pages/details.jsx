@@ -39,7 +39,7 @@ export default function DetailPage() {
     getDetails();
   }, [id]);
 
-  if (loading) return <div className="text-center p-6"><Loading/></div>;
+  if (loading) return <div><Loading/></div>;
 
   if (error) return <div className="text-center text-red-600 p-6">{error}</div>;
 

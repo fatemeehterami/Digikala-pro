@@ -34,10 +34,10 @@ export default function BoxRow({ title, img, price ,id , discount,priceDiscount}
                 <svg className="w-4 h-4 text-black">
                   <use href="#toman"></use>
                 </svg>
-                {priceDiscount.toLocaleString("fa-IR")}
+                {(priceDiscount/10).toLocaleString("fa-IR")}
               </p>
               <p className="text-sm text-gray-500 line-through">
-                {price.toLocaleString("fa-IR")}
+                {(price/10).toLocaleString("fa-IR")}
               </p>
             </div>
           </>
@@ -47,7 +47,7 @@ export default function BoxRow({ title, img, price ,id , discount,priceDiscount}
               <svg className="w-4 h-4 text-black">
                 <use href="#toman"></use>
               </svg>
-              {price.toLocaleString("fa-IR")}
+              {(price/10).toLocaleString("fa-IR")}
             </p>
           </div>
         )}
