@@ -157,7 +157,9 @@ useEffect(() => {
                                               >
                                                 {/* Child title */}
                                                 <a
-                                                  href="#"
+                                                  onClick={() => {
+                                                     navigate(`/search/${encodeURIComponent(child.title)}`);
+                                                  }}
                                                   className="text-sm font-medium flex justify-start items-center gap-1 text-gray-800 hover:text-red-600 cursor-pointer"
                                                 >
                                                   <div className="text-red-500 hidden md:block">|</div>

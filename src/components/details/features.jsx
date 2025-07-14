@@ -5,7 +5,7 @@ export default function Features({ attributes }) {
     {attributes &&
     <>
       <p className="text-lg text-black">ویژگی‌ها</p>
-      <div className="mt-2 flex gap-2 w-full">
+      <div className="mt-2 flex gap-2 w-full flex-wrap">
         {attributes?.map((item, index) => (
           <div key={index} className="flex flex-col bg-gray-200 gap-2 rounded-lg py-2 px-5 w-fit">
             <p className="text-sm text-gray-700">{item.title}</p>

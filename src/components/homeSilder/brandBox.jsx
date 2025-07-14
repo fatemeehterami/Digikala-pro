@@ -4,25 +4,24 @@ import BrandItem from "./brandItem";
 import './brand.css'
 
 const brands = [
-    { id: 1, src: "brand/1.jpg", alt: "عکس برند",url:"" },
-    { id: 2, src: "brand/2.png", alt: "عکس برند", url:""},
-    { id: 3, src: "brand/3.jpg", alt: "عکس برند",url:""},
-    { id: 4, src: "brand/4.png", alt: "عکس برند", url:""},
-    { id: 5, src: "brand/5.jpg", alt: "عکس برند",url:"" },
-    { id: 6, src: "brand/6.png", alt: "عکس برند",url:"" },
-    { id: 7, src: "brand/7.jpg", alt: "عکس برند",url:"" },
-    { id: 8, src: "brand/8.png", alt: "عکس برند",url:"" },
-    { id: 9, src: "brand/9.png", alt: "عکس برند",url:"" },
-    { id: 10, src: "brand/10.jpg", alt: "عکس برند",url:"" },
-    { id: 11, src: "brand/11.png", alt: "عکس برند",url:"" },
-    { id: 12, src: "brand/12.jpg", alt: "عکس برند",url:"" },
-    { id: 13, src: "brand/13.png", alt: "عکس برند",url:"" },
-    { id: 14, src: "brand/14.png", alt: "عکس برند",url:"" },
-    { id: 15, src: "brand/15.jpg", alt: "عکس برند",url:"" },
-    { id: 16, src: "brand/16.png", alt: "عکس برند",url:"" },
-    { id: 17, src: "brand/17.png", alt: "عکس برند",url:"" },
-    { id: 18, src: "brand/18.jpg", alt: "عکس برند",url:"" },
-    { id: 19, src: "brand/19.jpg", alt: "عکس برند",url:"" },
+    { id: 1, src: "brand/1.jpg", alt: "عکس برند",url:"" ,name:"سامسونگ"},
+    { id: 2, src: "brand/2.png", alt: "عکس برند", url:"",name:"شیائومی"},
+    // { id: 3, src: "brand/3.jpg", alt: "عکس برند",url:"",name:"ساعی"},
+    { id: 4, src: "brand/4.png", alt: "عکس برند", url:"",name:"ویتالیر"},
+    { id: 5, src: "brand/5.jpg", alt: "عکس برند",url:"",name:"مهیا" },
+    { id: 6, src: "brand/7.jpg", alt: "عکس برند",url:"" ,name:"فولیکا"},
+    { id: 7, src: "brand/8.png", alt: "عکس برند",url:"" ,name:"مای"},
+    { id: 8, src: "brand/9.png", alt: "عکس برند",url:"" ,name:"کاله"},
+    { id: 9, src: "brand/10.jpg", alt: "عکس برند",url:"" ,name:"اکتیو"},
+    { id: 10, src: "brand/11.png", alt: "عکس برند",url:"" ,name:"لافارر"},
+    { id: 11, src: "brand/12.jpg", alt: "عکس برند",url:"" ,name:"یوروویتال"},
+    { id: 12, src: "brand/13.png", alt: "عکس برند",url:"" ,name:"هوآوی"},
+    { id: 13, src: "brand/14.png", alt: "عکس برند",url:"" ,name:"چینی زرین"},
+    { id: 14, src: "brand/15.jpg", alt: "عکس برند",url:"" ,name:"ایکس ویژن"},
+    { id: 15, src: "brand/16.png", alt: "عکس برند",url:"" ,name:"پرسیل"},
+    { id: 16, src: "brand/17.png", alt: "عکس برند",url:"" ,name:"پریل"},
+    { id: 17, src: "brand/18.jpg", alt: "عکس برند",url:"" ,name:"چرم مشهد"},
+    { id: 18, src: "brand/19.jpg", alt: "عکس برند",url:"" ,name:"پنتر"},
   ];
 
   export default function BrandBox() {
@@ -71,6 +70,7 @@ const brands = [
                   src={item.src}
                   alt={item.alt}
                   url={item.url}
+                  name={item.name}
                 />
               </SplideSlide>
             ))}

@@ -45,7 +45,7 @@ const ProductsPage = () => {
       if (loading || page >= totalPages) return;
 
       const scrollPosition = window.innerHeight + window.scrollY;
-      const threshold = document.body.offsetHeight - 300;
+      const threshold = document.body.offsetHeight - 400;
 
       if (scrollPosition >= threshold) {
         setPage(prev => prev + 1);
@@ -58,14 +58,14 @@ const ProductsPage = () => {
 
   return (
     <div className="max-w-screen-xl my-2 flex mx-auto flex-col">
-      <h1 className="text-lg font-bold mb-4">
-        نتایج برای: {decodeURIComponent(searchTerm).replace(/-/g, ' ')}
+      <h1 className="text-xl py-6 text-gray-600">
+        فروشگاه دیجیکالا / {decodeURIComponent(searchTerm).replace(/-/g, ' ')}
       </h1>
 
       {results.length === 0 && !loading && <p className='text-xl'> نتیجه‌ای یافت نشد.</p>}
       {error && <p className="text-red-500">{error}</p>}
 
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 w-full border-t border-gray-200">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 w-full ">
         {results.map((item) => (
           <div
             key={item.id}
