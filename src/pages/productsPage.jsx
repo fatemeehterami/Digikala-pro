@@ -57,33 +57,37 @@ const ProductsPage = () => {
   }, [loading, page, totalPages]);
 
   return (
-    <div className="max-w-screen-xl my-2 flex mx-auto flex-col">
+    <div className="max-w-screen-xl my-2 flex mx-auto flex-col px-5">
       <h1 className="text-xl py-6 text-gray-600">
-        فروشگاه دیجیکالا / {decodeURIComponent(searchTerm).replace(/-/g, ' ')}
+        فروشگاه دیجیکالا / {decodeURIComponent(searchTerm).replace(/-/g, " ")}
       </h1>
 
-      {results.length === 0 && !loading && <p className='text-xl'> نتیجه‌ای یافت نشد.</p>}
+      {results.length === 0 && !loading && (
+        <p className="text-xl"> نتیجه‌ای یافت نشد.</p>
+      )}
       {error && <p className="text-red-500">{error}</p>}
 
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 w-full ">
         {results.map((item) => (
-          <div
-            key={item.id}
-            className="w-full h-full"
-          >
+          <div key={item.id} className="w-full h-full">
             <CardItem
               img={item.images.main}
               title={item.title_fa}
               alt={item.title_fa}
               id={item.id}
               price={item.price}
+              status={item.status}
               score={item.default_variant?.statistics?.satisfied?.rate_count}
             />
           </div>
         ))}
       </div>
 
-      {loading && <div><Loading/></div>}
+      {loading && (
+        <div>
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };

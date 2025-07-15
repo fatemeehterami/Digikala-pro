@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function CardItem({ title, img, alt, id, score,price }) {
+export default function CardItem({ title, img, alt, id, score, price, status }) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/product/details/${id}`);
@@ -14,29 +14,35 @@ export default function CardItem({ title, img, alt, id, score,price }) {
       onClick={handleClick}
       className="flex flex-col justify-start items-center gap-3 cursor-pointer
        h-full px-5 py-6 w-full transition-transform duration-200 border border-gray-100 hover:shadow-xl"
-
     >
-      <img className="w-44 h-60  rounded-xl object-cover" src={img} alt={alt} />
+      <img
+        className="w-full h-60  rounded-xl object-cover"
+        src={img}
+        alt={alt}
+      />
       <p
-        className="text-main-txt-menu text-sm font-normal  whitespace-nowrap
+        className="text-main-txt-menu text-sm font-normal whitespace-nowrap
            text-ellipsis overflow-hidden w-full"
       >
         {title}
       </p>
-      <div className='flex justify-end items-center w-full'>
-      {score ? (
-        <p className='flex justify-center items-center gap-2'>
-        {score?.toLocaleString("fa-IR")}
-          <svg className='w-3 h-3 text-yellow-400'>
-            <use href="#starFill"></use>
+      <div className="flex justify-end items-center w-full">
+        {score ? (
+          <p className="flex justify-center items-center gap-2">
+            {score?.toLocaleString("fa-IR")}
+            <svg className="w-3 h-3 text-yellow-400">
+              <use href="#starFill"></use>
             </svg>
-        </p>):null}
+          </p>
+        ) : null}
       </div>
       <div
         className={`flex ${
           price?.discount_percent ? "justify-between" : "justify-end"
         } items-center w-full`}
       >
+        {status !== 'out_of_stock' ? (
+          <>
         {price?.discount_percent ? (
           <>
             <div className="bg-[#d32f2f] text-white font-bold  text-sm py-0.5 px-2 rounded-full">
@@ -64,6 +70,12 @@ export default function CardItem({ title, img, alt, id, score,price }) {
             </p>
           </div>
         )}
+        </>
+    ):
+    <p className='text-lg text-gray-600'>
+      ناموجود
+      </p>
+      }
       </div>
     </div>
   );

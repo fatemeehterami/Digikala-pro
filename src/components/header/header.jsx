@@ -47,7 +47,7 @@ useEffect(() => {
             <div className="flex flex-1 items-center grow gap-4">
                 {/* logo */}
                 <a href="/" className="lg:flex items-center space-x-3 rtl:space-x-reverse hidden">
-                    <img src="imgs/digi-logo.png" className="h-7" alt="digi logo" />
+                    <img src="/imgs/digi-logo.png" className="h-7" alt="digi logo" />
                 </a>
                 {/*  search box */}
                 <form className="lg:max-w-md w-full"

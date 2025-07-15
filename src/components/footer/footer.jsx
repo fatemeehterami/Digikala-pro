@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="flex lg:justify-between justify-center items-center lg:w-auto w-full">
             <div className="mb-6 md:mb-0 hidden lg:inline">
                 <a href="/" className="flex items-center">
-                    <img src="imgs/digi-logo.png" className="h-7 me-3" alt="digi Logo" />
+                    <img src="/imgs/digi-logo.png" className="h-7 me-3" alt="digi Logo" />
                 </a>
             </div>
             <button className="lg:border-gray-200 lg:border-1 border-0 lg:text-neutral-500 text-cyan-400 
@@ -44,35 +44,35 @@ export default function Footer() {
             <div className="flex justify-between items-center w-full">
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
-                        <img className="w-full inline-block object-cover" src="icons/express-delivery.svg"
+                        <img className="w-full inline-block object-cover" src="/icons/express-delivery.svg"
                          width="56" height="56" alt="اﻣﮑﺎن ﺗﺤﻮﯾﻞ اﮐﺴﭙﺮس" title="" />
                     </div>
                     <p className="text-xs text-neutral-700">اﻣﮑﺎن ﺗﺤﻮﯾﻞ اﮐﺴﭙﺮس</p>
                 </a>
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
-                        <img className="w-full inline-block object-cover" src="icons/cash-on-delivery.svg"
+                        <img className="w-full inline-block object-cover" src="/icons/cash-on-delivery.svg"
                          width="56" height="56" alt="امکان پرداخت در محل" title="" />
                     </div>
                     <p className="text-xs text-neutral-700">امکان پرداخت در محل</p>
                 </a>
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
-                        <img className="w-full inline-block object-cover" src="icons/support.svg"
+                        <img className="w-full inline-block object-cover" src="/icons/support.svg"
                          width="56" height="56" alt="۷ روز ﻫﻔﺘﻪ، ۲۴ ﺳﺎﻋﺘﻪ" title="" />
                     </div>
                     <p className="text-xs text-neutral-700">۷ روز ﻫﻔﺘﻪ، ۲۴ ﺳﺎﻋﺘﻪ</p>
                 </a>
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
-                        <img className="w-full inline-block object-cover" src="icons/days-return.svg"
+                        <img className="w-full inline-block object-cover" src="/icons/days-return.svg"
                          width="56" height="56" alt="هفت روز ضمانت بازگشت کالا" title="" />
                     </div>
                     <p className="text-xs text-neutral-700">هفت روز ضمانت بازگشت کالا</p>
                 </a>
                 <a href="#" className="flex flex-col justify-center items-center gap-1 py-3 grow">
                     <div className="w-14 h-14">
-                        <img className="w-full inline-block object-cover" src="icons/original-products.svg"
+                        <img className="w-full inline-block object-cover" src="/icons/original-products.svg"
                          width="56" height="56" alt="ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ" title="" />
                     </div>
                     <p className="text-xs text-neutral-700">ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ</p>
@@ -208,16 +208,16 @@ export default function Footer() {
             {/* icons */}
             <div className="flex items-center justify-start gap-7">
               <a href="#" className="decoration-0">
-                <img src="icons/instagram.svg" className="h-8 w-8 " alt="instagram"/>
+                <img src="/icons/instagram.svg" className="h-8 w-8 " alt="instagram"/>
               </a>
               <a href="#" className="decoration-0">
-                <img src="icons/twitter.svg" className="h-8 w-8 " alt="twitter"/>
+                <img src="/icons/twitter.svg" className="h-8 w-8 " alt="twitter"/>
               </a>
               <a href="#" className="decoration-0">
-                <img src="icons/linkedin.svg" className="h-8 w-8 " alt="linkedin"/>
+                <img src="/icons/linkedin.svg" className="h-8 w-8 " alt="linkedin"/>
               </a>
               <a href="#" className="decoration-0">
-                <img src="icons/aparat.svg" className="h-7 w-7 " alt="aparat"/>
+                <img src="/icons/aparat.svg" className="h-7 w-7 " alt="aparat"/>
               </a>
             </div>
             <p className="my-6 text-sm font-semibold text-gray-900" >با ثبت ایمیل، از جدیدترین تخفیف‌ها باخبر شوید</p>
