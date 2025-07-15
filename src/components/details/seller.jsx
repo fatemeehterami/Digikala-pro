@@ -32,7 +32,7 @@ export default function Seller({ selectedColor , data ,discountPrice }) {
                     {data.price?.selling_price.toLocaleString("fa-IR")}
                   </p>
                 </div>
-                <button className="w-full bg-[#d32f2f] text-white font-bold text-sm py-2 px-4 rounded-lg mt-3">
+                <button className="w-full bg-[#ef4056] text-white font-bold text-sm py-2 px-4 rounded-lg mt-3">
                     افزودن به سبد خرید  </button>
         </div>
     )

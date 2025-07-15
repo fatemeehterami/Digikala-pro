@@ -12,6 +12,9 @@ export default function Header() {
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
    "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
+  const handleClick = () => {
+    navigate(`/user/login/`);
+  };
 
   useEffect(() => {
     const getMenuItem = async () => {
@@ -81,7 +84,9 @@ useEffect(() => {
                         </svg>
                     </div>
                     {/* login */}
-                    <button id="login-div" className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
+                    <button id="login-div"
+                    onClick={handleClick}
+                    className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
                         <span>ورود | ثبت‌نام</span>
                         <svg className="w-7 h-7 text-black">
                             <use href="#login-icon"/>
