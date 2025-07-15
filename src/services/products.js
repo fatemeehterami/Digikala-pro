@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// API config
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
@@ -9,26 +8,20 @@ const api = axios.create({
   },
 });
 
-// 👉 دسته‌بندی‌ها و mapping بین slug و ID
 const categoryMap = {
   cordlessscrewdriver: 1,
   face: 2,
   laptop: 3,
-  // 🟡 اینجا بقیه slugها و idها رو دستی یا داینامیک پر کن
 };
 
-/**
- * گرفتن ID با استفاده از slug (url آخر)
- */
 const resolveCategoryId = async (slug) => {
-  // می‌تونی بعداً این رو از یک API بگیری یا ذخیره‌سازی کنی در localStorage
   return categoryMap[slug] || null;
 };
 
 /**
- * گرفتن محصولات یک دسته
- * @param {string} slug - مثلا 'cordlessscrewdriver'
- * @param {number} page - شماره صفحه
+ * 
+ * @param {string} slug 
+ * @param {number} page 
  */
 export const fetchProductBySlug = async (slug, page = 1) => {
   const id = await resolveCategoryId(slug);
@@ -40,7 +33,7 @@ export const fetchProductBySlug = async (slug, page = 1) => {
     const response = await api.get(`category/?id=${id}&page=${page}`);
     return response.data;
   } catch (error) {
-    console.error("❌ API fetch error", error);
+    console.error("API fetch error", error);
     throw error;
   }
 };

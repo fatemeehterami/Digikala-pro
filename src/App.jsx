@@ -7,11 +7,12 @@ import './App.css'
 import DetailPage from './pages/details';
 import Login from './components/account/login';
 import VerifyPage from './components/account/verifyCode';
+import Profile from './components/account/profile';
 
 function App() {
   const location = useLocation();
-  const hideLayoutRoutes = ['/user/login/','/user/verify'];
-  const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
+  const hideLayoutRoutes = ['/user/login','/user/verify'];
+  const shouldHideLayout = hideLayoutRoutes.some(path => location.pathname.startsWith(path));
 
   return (
     <>
@@ -22,8 +23,9 @@ function App() {
         <Route path="/product/details/:id" element={<DetailPage />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/verify" element={<VerifyPage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
-      {!shouldHideLayout && <Footer />}
+      {!shouldHideLayout && <Footer />} 
     </>
   );
 }

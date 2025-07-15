@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import './header.css'
 import { fetchMenuItem } from '../../services/header';
+import { AuthContext } from "../../AuthContext";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,11 +10,17 @@ export default function Header() {
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const { mobile } = useContext(AuthContext);
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
    "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
-  const handleClick = () => {
-    navigate(`/user/login/`);
+
+   const handleClick = () => {
+    if (mobile && mobile.length === 11) { 
+      navigate('/profile');
+    } else {
+      navigate('/user/login');
+    }
   };
 
   useEffect(() => {
@@ -84,13 +91,23 @@ useEffect(() => {
                         </svg>
                     </div>
                     {/* login */}
-                    <button id="login-div"
-                    onClick={handleClick}
-                    className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative ">
-                        <span>ورود | ثبت‌نام</span>
-                        <svg className="w-7 h-7 text-black">
-                            <use href="#login-icon"/>
-                        </svg>
+                    <button
+                      id="login-div"
+                      onClick={handleClick}
+                      className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative"
+                    >
+                      <span>
+                        {mobile ? `سلام ${mobile}` :
+                        <>
+                        <div className='flex flex-row-reverse gap-2'>
+                          ورود | ثبت‌نام
+                            <svg className="w-7 h-7 text-black">
+                              <use href="#login-icon" />
+                            </svg>
+                        </div>
+                        </> 
+                        }
+                      </span>
                     </button>
                     {/* shopping card */}
                     <div className="mr-10 lg:flex hidden">
