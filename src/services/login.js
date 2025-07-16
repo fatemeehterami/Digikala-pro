@@ -47,3 +47,22 @@ export async function logout() {
     throw error.response?.data || { message: 'Logout failed' };
   }
 }
+export async function registerUser(data) {
+  try {
+    const response = await axios.post(`${API_URL}auth/register`, data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Registration failed' };
+  }
+}
+
+export async function getUserProfile(mobile) {
+  try {
+    const response = await axios.get(`${API_URL}auth/profile`, {
+      params: { mobile },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Error getting profile data' };
+  }
+}

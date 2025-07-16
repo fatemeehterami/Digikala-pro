@@ -2,25 +2,40 @@ import { useEffect, useState,useContext } from 'react';
 import './header.css'
 import { fetchMenuItem } from '../../services/header';
 import { AuthContext } from "../../AuthContext";
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
+import { logout as apiLogout } from '../../services/login'; 
+
 
 export default function Header() {
   const [menu , setMenu] = useState([])
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const { mobile } = useContext(AuthContext);
+  const { mobile , logout } = useContext(AuthContext);
+
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
    "bookStationary", "sportOutdoor", "giftCard", "fresh", "kidsToy", "nativeBusiness", "pinother"];
 
    const handleClick = () => {
-    if (mobile && mobile.length === 11) { 
-      navigate('/profile');
-    } else {
+    if (!mobile) { 
       navigate('/user/login');
     }
+  };
+  const handleProfile = () => {
+      navigate('/profile');
+  };
+  const handleShoppingCard = () => {
+    navigate('/shopping-card');
+};
+  const handleLogout = async () => {
+    try {
+      await apiLogout();
+    } catch (err) {
+      console.warn("error on logout:", err.message);
+    }
+    logout();
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
@@ -48,7 +63,10 @@ useEffect(() => {
   }
 }, [menu]);
 
-
+const convertToPersianDigits = (str) => {
+  if (!str) return '';
+  return str.replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
+};
 
     return (
         <header className="lg:w-full pb-3 flex flex-col relative z-2 bg-white border-b border-gray-200 font-[iransans]">
@@ -70,8 +88,8 @@ useEffect(() => {
                   }
                 }}>
                     <div className="relative">
-                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg className="w-6 h-6 text-black">
+                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none z-20">
+                        <svg className="w-6 h-6 text-black cursor-pointer">
                             <use href="#search-icon"/>
                         </svg>
                         </div>
@@ -84,38 +102,68 @@ useEffect(() => {
 
             </div>
             <div className="flex items-center justify-end">
-                   {/* bell */}
-                    <div className="lg:ml-7 lg:bg-transparent bg-gray-100 p-2 rounded-full">
-                        <svg className="w-7 h-7 text-black">
-                            <use href="#bell-icon"/>
-                        </svg>
-                    </div>
-                    {/* login */}
-                    <button
-                      id="login-div"
-                      onClick={handleClick}
-                      className="border-gray-200 border-1 cursor-pointer p-2 hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl relative"
-                    >
-                      <span>
-                        {mobile ? `سلام ${mobile}` :
-                        <>
-                        <div className='flex flex-row-reverse gap-2'>
-                          ورود | ثبت‌نام
-                            <svg className="w-7 h-7 text-black">
-                              <use href="#login-icon" />
-                            </svg>
-                        </div>
-                        </> 
-                        }
-                      </span>
-                    </button>
-                    {/* shopping card */}
-                    <div className="mr-10 lg:flex hidden">
-                        <svg className="w-7 h-7 text-black">
-                            <use href="#shoppingCard-icon"/>
-                        </svg>
-                    </div>
+            {/* bell */}
+            <div className="lg:ml-7 lg:bg-transparent bg-gray-100 p-2 rounded-full">
+              <svg className="w-7 h-7 text-black">
+                <use href="#bell-icon" />
+              </svg>
             </div>
+
+            {/* login */}
+            <div
+              className={`relative hidden lg:flex justify-center items-center gap-3 flex-row-reverse rounded-xl cursor-pointer group ${!mobile ? 'border border-gray-200 p-2' : 'px-4'}`}
+              id="login-div"
+              onClick={handleClick}
+            >
+              {mobile ? (
+                <>
+                  <svg className="w-7 h-7 text-black">
+                    <use href="#user-icon" />
+                  </svg>
+                  <svg className="w-3 h-4 text-black rotate-180">
+                    <use href="#up-arrowKey" />
+                  </svg>
+
+                  {/* dropdown */}
+                  <div className="absolute top-full left-3 mt-0.5 w-48  bg-white border border-gray-200   rounded-lg shadow-lg hidden flex-col items-center group-hover:flex z-50">
+                    <a className="cursor-pointer flex justify-between items-center hover:bg-gray-100 text-lg p-4 transition-colors  w-full border-b border-b-gray-200" onClick={handleProfile}>
+                    {convertToPersianDigits(mobile)}
+                      <svg className="w-3 h-4 text-black -rotate-90">
+                        <use href="#up-arrowKey" />
+                      </svg>
+                      </a>
+                    <a className="cursor-pointer hover:bg-gray-100 text-lg p-4 transition-colors  w-full border-b border-b-gray-200 flex justify-end items-center gap-2 flex-row-reverse" onClick={handleShoppingCard}>
+                      سبد خرید
+                      <svg className="w-6 h-6 text-black">
+                        <use href="#shoppingCard-icon" />
+                      </svg>
+                      </a>
+                    <a className="cursor-pointer hover:bg-gray-100 text-lg p-4 transition-colors  w-full flex justify-end items-center gap-2 flex-row-reverse" onClick={handleLogout}>
+                      خروج از حساب
+                      <svg className="w-6 h-6 text-black rotate-180">
+                        <use href="#login-icon" />
+                      </svg>
+                      </a>
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-row-reverse justify-center items-center gap-2">
+                  ورود | ثبت‌نام
+                  <svg className="w-7 h-7 text-black">
+                    <use href="#login-icon" />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            {/* shopping card */}
+            <div className="mr-10 lg:flex hidden">
+              <svg className="w-7 h-7 text-black">
+                <use href="#shoppingCard-icon" />
+              </svg>
+            </div>
+          </div>
+
         </div>
     </div>
     {/* main menu */}

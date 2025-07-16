@@ -53,8 +53,8 @@ export default function VerifyPage() {
   }
 
   return (
-    <div className="w-1/4 mx-auto flex flex-col justify-center items-center h-screen">
-      <div className="border w-full border-gray-200 flex flex-col rounded-2xl px-10 py-3">
+    <div className="lg:w-1/4 w-full mx-auto flex flex-col justify-center items-center h-screen">
+      <div className="lg:border w-full lg:border-gray-200 flex flex-col rounded-2xl px-10 py-3">
         <div role="button" onClick={handleGoBack} className="cursor-pointer">
           <svg className="w-8 h-8 text-gray-500">
             <use href="#previousPage-icon"></use>
@@ -100,7 +100,7 @@ export default function VerifyPage() {
                         isValidCode() ? 'bg-[#ef4056]' : 'bg-red-200 cursor-not-allowed'
                          }`}
                         disabled={!isValidCode()}>
-                       hnhli</button>
+                       تایید</button>
           </form>
         </div>
       </div>

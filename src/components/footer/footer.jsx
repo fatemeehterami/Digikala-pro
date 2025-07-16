@@ -1,5 +1,9 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthContext";
+
 export default function Footer() {
+  const { mobile  } = useContext(AuthContext);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -7,7 +11,17 @@ export default function Footer() {
     });
   };
   const [openSection, setOpenSection] = useState(null);
-
+  const navigate = useNavigate()
+  const handleShoppingCard = () => {
+    navigate('/shopping-card');
+  };
+  const handleProfile = () => {
+    if (!mobile) { 
+      navigate('/user/login');
+    }else{
+      navigate('/profile')
+    }
+  };
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
   };
@@ -252,19 +266,21 @@ export default function Footer() {
                       </svg>
                       <p className="text-sm">خانه</p>
                    </a>
-                   <div className='flex justify-center items-center flex-col gap-1'>
+                   <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'>
                     <svg className="w-7 h-7 ">
                         <use href="#categoryOutline"/>
                       </svg>
                       <p className="text-sm">دسته بندی</p>
                    </div>
-                   <div className='flex justify-center items-center flex-col gap-1'>
+                   <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'
+                   onClick={handleShoppingCard}>
                     <svg className="w-7 h-7 ">
                         <use href="#cartOff"/>
                       </svg>
                       <p className="text-sm">سبد خرید</p>
                    </div>
-                   <div className='flex justify-center items-center flex-col gap-1'>
+                   <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'
+                   onClick={handleProfile}>
                     <svg className="w-7 h-7 ">
                         <use href="#profileOff"/>
                       </svg>
