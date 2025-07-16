@@ -2,8 +2,10 @@ import { useContext, useState,useEffect } from 'react';
 import { AuthContext } from '../../AuthContext';
 import { registerUser } from '../../services/login';
 import moment from 'moment-jalaali';
+import SpecificModal from '../modal/specificModal';
 export default function EditProfile({ onClose,profile = {} }) {
     const { mobile } = useContext(AuthContext);
+    const [modal, setModal] = useState(null);
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -36,10 +38,17 @@ export default function EditProfile({ onClose,profile = {} }) {
             ...formData,
           });
           
-          alert('پروفایل با موفقیت ثبت شد!');
-          onClose();
-        } catch (err) {
-          alert(err.message || 'خطا در ثبت اطلاعات');
+          setModal({
+            text: "پروفایل با موفقیت ثبت شد!",
+            btnText:'باشه',
+            onClose: onClose, 
+          });
+        } catch (error) {
+          setModal({
+            text: "خطا در ثبت اطلاعات",
+            btnText:'باشه',
+            onClose: () => setModal(null),
+          });
         }
       };
     return (
@@ -64,7 +73,7 @@ export default function EditProfile({ onClose,profile = {} }) {
                        focus:ring-0 focus:border-red-500 peer" placeholder=" " required  
                        value={formData.firstname}
                        onChange={handleChange}/>
-                    <label htmlFor="firstname" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">نام :</label>
+                    <label for="firstname" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">نام :</label>
                 </div>
                 
                 <div className="relative z-0 w-full mb-5 group">
@@ -75,7 +84,7 @@ export default function EditProfile({ onClose,profile = {} }) {
                         placeholder=" " required 
                         value={formData.lastname}
                         onChange={handleChange}/>
-                    <label htmlFor="lastname" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">نام خانوادگی :</label>
+                    <label for="lastname" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">نام خانوادگی :</label>
                 </div>
 
             </div>
@@ -87,7 +96,7 @@ export default function EditProfile({ onClose,profile = {} }) {
                   focus:outline-none focus:ring-0 focus:border-red-500 peer" placeholder=" " 
                   value={formData.email}
                   onChange={handleChange}/>
-                <label htmlFor="email" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ایمیل :</label>
+                <label for="email" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ایمیل :</label>
             </div>
 
             <div className="relative z-0 w-full mb-5 group">
@@ -98,7 +107,7 @@ export default function EditProfile({ onClose,profile = {} }) {
                     placeholder=" " required 
                     value={formData.password}
                     onChange={handleChange}/>
-                <label htmlFor="password" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">رمز عبور :</label>
+                <label for="password" className="peer-focus:font-medium absolute text-sm text-gra duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">رمز عبور :</label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
                 <input type="text" name="nationalcode" 
@@ -108,7 +117,7 @@ export default function EditProfile({ onClose,profile = {} }) {
                    focus:border-red-500 peer" placeholder=" " required 
                    value={formData.nationalcode}
                    onChange={handleChange}/>
-                <label htmlFor="nationalcode" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">کد ملی :</label>
+                <label for="nationalcode" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">کد ملی :</label>
             </div>
 
             <div className="relative z-0 w-full mb-5 group">
@@ -128,8 +137,16 @@ export default function EditProfile({ onClose,profile = {} }) {
             </div>
 
 
-            <button type="submit" className="text-white float-end bg-[#ef4056] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">تایید</button>
+            <button type="submit" className="text-white float-end bg-[#ef4056] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">تایید</button>
             </form>
+            {modal && (
+            <SpecificModal
+              text={modal.text}
+              btnText={modal.btnText}
+              onClose={modal.onClose}
+            />
+          )}
+
         </div>
       </div>
     );

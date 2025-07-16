@@ -3,13 +3,14 @@ import { useState, useContext,useEffect } from 'react';
 import { AuthContext } from "../../AuthContext";
 import EditProfile from './editProfile';
 import { getUserProfile } from '../../services/login';
+import SpecificModal from '../modal/specificModal';
 import moment from 'moment-jalaali';
 import { logout as apiLogout } from '../../services/login';
 
 export default function Profile() {
   const navigate = useNavigate();
   const { mobile ,logout } = useContext(AuthContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
   const [profile, setProfile] = useState({});
 
   const convertToPersianDigits = (str) => {
@@ -29,15 +30,18 @@ export default function Profile() {
     if (mobile) {
       fetchData();
     }
-  }, [mobile, isModalOpen]);
+  }, [mobile, modalType]);
   const handleLogout = async () => {
-    try {
-      await apiLogout();
-    } catch (err) {
-      console.warn("error on logout:", err.message);
-    }
-    logout();
-    navigate("/", { replace: true });
+    setModalType(null);
+    setTimeout(async () => {
+      try {
+        await apiLogout();
+      } catch (err) {
+        console.warn("error on logout:", err.message);
+      }
+      logout();
+      navigate("/", { replace: true });
+    }, 200);
   };
   const handleShoppingCard = () => {
     navigate('/shopping-card');
@@ -48,7 +52,7 @@ export default function Profile() {
         <p className='text-2xl font-bold'>پروفایل شما :</p>
         <div className='flex flex-row-reverse gap-3'>
         <svg className="w-7 h-7 text-black cursor-pointer"
-        onClick={() => setIsModalOpen(true)}>
+        onClick={() => setModalType('edit')}>
           <use href="#edit-icon" />
         </svg>
         <svg className="w-7 h-7 text-black cursor-pointer flex lg:hidden"
@@ -56,7 +60,7 @@ export default function Profile() {
           <use href="#shoppingCard-icon" />
         </svg>
         <svg className="w-7 h-7 text-black cursor-pointer rotate-180 flex lg:hidden"
-        onClick={handleLogout}> 
+        onClick={() => setModalType('logout')}>
           <use href="#login-icon" />
         </svg>
         </div>
@@ -93,8 +97,11 @@ export default function Profile() {
           </div>
        </div>
       </div>
-      {isModalOpen && (
-        <EditProfile onClose={() => setIsModalOpen(false)} profile={profile} />
+      {modalType === 'edit' && (
+        <EditProfile onClose={() => setModalType(null)} profile={profile} />
+      )}
+      {modalType === 'logout' && (
+        <SpecificModal onClose={() => setModalType(null)} action={handleLogout} icon="exitdoor-icon" text="از حساب کاربری خارج می‌شوید؟" btnText="خروج از حساب کاربری" />
       )}
     </div>
   );

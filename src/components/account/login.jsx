@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { checkMobile, sendVerificationCode } from '../../services/login';
 import { useState } from 'react';
+import SpecificModal from '../modal/specificModal';
 export default function Login(){
     const navigate = useNavigate();
     const [mobile, setMobile] = useState('');
     const [touched, setTouched] = useState(false);
+    const [modal, setModal] = useState(null);
 
     const getMobileError = () => {
         if (!mobile) return '';
@@ -22,7 +24,11 @@ export default function Login(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isValidMobile()) {
-            alert('شماره موبایل باید با 09 شروع شده و 11 رقم باشد');
+          setModal({
+            text: 'شماره موبایل باید با 09 شروع شده و 11 رقم باشد',
+            btnText:'باشه',
+            onClose: () => setModal(null)
+          });
             return;
           }
         try {
@@ -31,7 +37,11 @@ export default function Login(){
           const res = await sendVerificationCode(mobile);
           navigate('/user/verify', { state: { mobile ,mobileExists } });
         } catch (err) {
-          alert(err.message || "خطا در ارسال کد");
+          setModal({
+            text: 'خطا در ارسال کد',
+            btnText:'باشه',
+            onClose: () => setModal(null)
+          });
         }
       };
 
@@ -85,6 +95,14 @@ export default function Login(){
                     </form>
                 <p className='text-center text-sm w-full my-5'>ورود شما به معنای پذیرش شرایط دیجی‌کالاوقوانین حریم‌خصوصی است.</p>
                 </div>
+                {modal && (
+                            <SpecificModal
+                              text={modal.text}
+                              btnText={modal.btnText}
+                              onClose={modal.onClose}
+                            />
+                  )}
+
             </div>
         </div>
     )

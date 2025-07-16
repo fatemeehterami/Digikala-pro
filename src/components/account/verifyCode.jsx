@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { verifyCode } from '../../services/login';
 import { AuthContext } from '../../AuthContext';
+import SpecificModal from '../modal/specificModal';
 
 export default function VerifyPage() {
   const [code, setCode] = useState('');
@@ -10,6 +11,7 @@ export default function VerifyPage() {
   const { mobile, mobileExists } = location.state || {};
   const { login } = useContext(AuthContext);
   const [touched, setTouched] = useState(false);
+  const [modal, setModal] = useState(null);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -32,7 +34,11 @@ export default function VerifyPage() {
   const handleVerify = async (e) => {
     e.preventDefault();
         if (!isValidCode()) {
-            alert('کد باید دقیقا ۶ رقم و فقط عدد باشد.');
+            setModal({
+              text: 'کد باید دقیقا ۶ رقم و فقط عدد باشد.',
+              btnText:'باشه',
+              onClose: () => setModal(null)
+            });
             return;
           }
 
@@ -44,7 +50,11 @@ export default function VerifyPage() {
 
       navigate('/');
     } catch (err) {
-      alert(err.message || 'کد اشتباه است');
+      setModal({
+        text: 'کد اشتباه است',
+        btnText:'باشه',
+        onClose: () => setModal(null)
+      });
     }
   };
 
@@ -103,6 +113,13 @@ export default function VerifyPage() {
                        تایید</button>
           </form>
         </div>
+        {modal && (
+              <SpecificModal
+                text={modal.text}
+                btnText={modal.btnText}
+                onClose={modal.onClose}
+              />
+           )}
       </div>
     </div>
   );

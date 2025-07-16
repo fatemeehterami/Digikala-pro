@@ -4,6 +4,7 @@ import { fetchMenuItem } from '../../services/header';
 import { AuthContext } from "../../AuthContext";
 import { useNavigate,Link } from 'react-router-dom';
 import { logout as apiLogout } from '../../services/login'; 
+import SpecificModal from '../modal/specificModal';
 
 
 export default function Header() {
@@ -12,6 +13,7 @@ export default function Header() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const { mobile , logout } = useContext(AuthContext);
+  const [modalType, setModalType] = useState(null);
 
   const icons= ["mobile", "electronic", "electronic","homeKitchen", "homeElectronic",
     "beauty", "vehicles", "tools", "fashion", "jewelry", "health",
@@ -138,7 +140,10 @@ const convertToPersianDigits = (str) => {
                         <use href="#shoppingCard-icon" />
                       </svg>
                       </a>
-                    <a className="cursor-pointer hover:bg-gray-100 text-lg p-4 transition-colors  w-full flex justify-end items-center gap-2 flex-row-reverse" onClick={handleLogout}>
+                    <a 
+                    onClick={() => setModalType('logout')}
+                    className="cursor-pointer
+                     hover:bg-gray-100 text-lg p-4 transition-colors  w-full flex justify-end items-center gap-2 flex-row-reverse" >
                       خروج از حساب
                       <svg className="w-6 h-6 text-black rotate-180">
                         <use href="#login-icon" />
@@ -302,6 +307,10 @@ const convertToPersianDigits = (str) => {
                     <p className="text-xs lg:font-bold text-black hidden lg:block lg:text-[#f57f17]">شهر خود را انتخاب کنید</p>
                 </a>
             </div>
+
+            {modalType === 'logout' && (
+                    <SpecificModal onClose={() => setModalType(null)} action={handleLogout} icon="exitdoor-icon" text="از حساب کاربری خارج می‌شوید؟" btnText="خروج از حساب کاربری" />
+                  )}
         </div>
     </nav>
 
