@@ -16,7 +16,7 @@ export default function Image({ images }) {
   if (!images) return <div>No images found.</div>;
 
   return (
-    <div id="detailSlider" className="flex justify-center items-center flex-col lg:my-5 mx-3">
+    <div id="detailSlider" className="flex justify-center items-center flex-col lg:my-5 mx-3 w-full ">
       <div className="lg:w-auto w-[250px] lg:h-auto h-[250px] mb-4">
         <img
           src={mainImage}
@@ -28,6 +28,7 @@ export default function Image({ images }) {
         <Splide
           ref={splideRef}
           hasTrack={false}
+          className="lg:w-[330px]"
           options={{
             type: "slide",
             perPage: 4,

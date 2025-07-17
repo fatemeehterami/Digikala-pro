@@ -9,6 +9,7 @@ import UrlProduct from "../components/url/urlProduct";
 import ScoreRow from "../components/details/scoreRow";
 import ColorsPrice from "../components/details/colorPrice";
 import Features from "../components/details/features";
+import MoreDetails from "../components/details/moreDetails";
 
 export default function DetailPage() {
   const [data, setData] = useState(null);
@@ -24,7 +25,6 @@ export default function DetailPage() {
         const response = await fetchProductDetails(id);
         if (response?.result?.product) {
           setData(response.result.product);
-          console.log(response.result.product);
         } else {
           throw new Error("Invalid API response structure.");
         }
@@ -49,7 +49,7 @@ export default function DetailPage() {
       <div className="grid lg:grid-cols-3 grid-cols-1  gap-5 w-full">
         <div className="col-span-1">
         {data.price?.badge && 
-          <div className="flex gap-3 items-center justify-between text-h5 px-5 py-3 rounded-lg bg-red-100">
+          <div className="flex gap-3 items-center justify-between mb-2 px-5 py-3 rounded-lg bg-red-100">
             <div className="flex items-center justify-center text-red-600">
               <div>فروش ویژه</div>
             </div>
@@ -66,7 +66,7 @@ export default function DetailPage() {
           <ColorsPrice variants={data.variants} parameters={data.parameters} discountPrice={data.price?.discount_percent}/>
           <Features attributes={data.review?.attributes}/>
           {data.category?.return_reason_alert &&
-          <div className="lg:w-3/4 w-full flex justify-center items-start gap-2">
+          <div className=" w-full flex justify-center items-start gap-2 my-2">
             <svg className="w-8 h-8 text-gray-500">
                 <use href="#infoFill"></use>
               </svg>
@@ -76,6 +76,40 @@ export default function DetailPage() {
           </div>}
         </div>
       </div>
+      <div className="lg:flex hidden justify-between items-center my-3 border-t border-b-4 border-gray-200 text-[#A1A3A8] w-full">
+            <div className="flex justify-center items-center gap-3 py-5 ">
+              <svg className="w-10 h-10">
+                <use href="#express-delivery-icon"></use>
+              </svg>
+              <p className="text-xs">امکان تحویل اکسپرس</p>
+            </div>
+            <div className="flex justify-center items-center gap-3 py-5">
+              <svg className="w-10 h-10">
+                <use href="#support-icon"></use>
+              </svg>
+              <p className="text-xs">۲۴ ساعته، ۷ روز هفته</p>
+            </div>
+            <div className="flex justify-center items-center gap-3 py-5">
+              <svg className="w-10 h-10">
+                <use href="#cash-on-delivery-icon"></use>
+              </svg>
+              <p className="text-xs">امکان پرداخت در محل</p>
+            </div>
+            <div className="flex justify-center items-center gap-3 py-5">
+              <svg className="w-10 h-10">
+                <use href="#days-return-icon"></use>
+              </svg>
+              <p className="text-xs">هفت روز ضمانت بازگشت کالا</p>
+            </div>
+            <div className="flex justify-center items-center gap-3 py-5">
+              <svg className="w-10 h-10">
+                <use href="#original-products-icon"></use>
+              </svg>
+              <p className="text-xs">ضمانت اصل بودن کالا</p>
+            </div>
+      </div>    
+      <MoreDetails description={data?.review?.description} comments={data?.comments} questions={data?.questions}/>
+    
     </div>
   );
 }

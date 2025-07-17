@@ -6,7 +6,6 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [checked, setChecked] = useState(false);
 
-  // رنگ‌های یکتا بر اساس hex_code
   const uniqueColors = variants?.filter(
     (v, index, self) =>
       index === self.findIndex((t) => t.color?.hex_code === v.color?.hex_code)
@@ -26,7 +25,6 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
     setSelectedColor(item);
   };
 
-  // فقط آیتم‌هایی که با رنگ انتخاب‌شده تطابق دارن
   const selectedColorVariants = variants.filter(
     (v) => v.color?.hex_code === selectedColor?.color?.hex_code
   );
@@ -89,13 +87,13 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
                     {selectedColor.insurance.discount_percent.toLocaleString("fa-IR")}٪
                   </div>
                   <p className="text-sm text-gray-500 line-through">
-                    {selectedColor.insurance.before_discount.toLocaleString("fa-IR")}
+                    {(selectedColor.insurance.before_discount/10).toLocaleString("fa-IR")}
                   </p>
                   <p className="flex justify-center items-center flex-row-reverse gap-2 text-base">
                     <svg className="w-4 h-4 text-black">
                       <use href="#toman"></use>
                     </svg>
-                    {selectedColor.insurance.total_premium.toLocaleString("fa-IR")}
+                    {(selectedColor.insurance.total_premium/10).toLocaleString("fa-IR")}
                   </p>
                 </div>
               </div>
@@ -108,7 +106,7 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
         <Seller
           data={selectedColorVariants}
           selectedColor={selectedColor}
-          discountPrice={discountPrice}
+          insuranceCheck={checked}
         />
       </div>
     </div>

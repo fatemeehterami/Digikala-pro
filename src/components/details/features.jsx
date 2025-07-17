@@ -1,7 +1,7 @@
 
 export default function Features({ attributes }) {
   return (
-    <div className="lg:w-3/4 w-full flex flex-col justify-start items-start">
+    <div className=" w-full flex flex-col justify-start items-start">
     {attributes &&
     <>
       <p className="text-lg text-black">ویژگی‌ها</p>
