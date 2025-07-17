@@ -32,7 +32,7 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
   );
 
   return (
-    <div className="w-full my-5 grid grid-cols-2 gap-2">
+    <div className="w-full my-5 grid grid-cols-1 lg:grid-cols-2 gap-2">
       <div className="col-span-1">
         {selectedColor && (
           <p className="text-sm mb-3">
@@ -104,7 +104,7 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
         )}
       </div>
 
-      <div className="col-span-1 border p-3 border-gray-200 rounded-lg bg-gray-100">
+      <div className="col-span-1 border p-3 border-gray-200 rounded-lg bg-gray-100 hidden lg:block">
         <Seller
           data={selectedColorVariants}
           selectedColor={selectedColor}

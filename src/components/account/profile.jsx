@@ -89,11 +89,11 @@ export default function Profile() {
           </div>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>تاریخ تولد</p>
-            <p>{moment(profile.dateofbirth).format('jYYYY/jMM/jDD')}</p>
+            <p>{!profile.dateofbirth ? 'وارد نشده است.' : moment(profile.dateofbirth).format('jYYYY/jMM/jDD')}</p>
           </div>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>ایمیل</p>
-            <p>{profile.email}</p>
+            <p>{!profile.email ? 'وارد نشده است.' : profile.email}</p>
           </div>
        </div>
       </div>

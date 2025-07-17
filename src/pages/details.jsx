@@ -44,9 +44,9 @@ export default function DetailPage() {
   if (error) return <div className="text-center text-red-600 p-6">{error}</div>;
 
   return (
-    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full">
+    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-3">
       <UrlPage titleFa={data.breadcrumb} categoryTitle={data.category_title} />
-      <div className="grid grid-cols-3 gap-3 w-full">
+      <div className="grid lg:grid-cols-3 grid-cols-1  gap-5 w-full">
         <div className="col-span-1">
         {data.price?.badge && 
           <div className="flex gap-3 items-center justify-between text-h5 px-5 py-3 rounded-lg bg-red-100">
@@ -66,7 +66,7 @@ export default function DetailPage() {
           <ColorsPrice variants={data.variants} parameters={data.parameters} discountPrice={data.price?.discount_percent}/>
           <Features attributes={data.review?.attributes}/>
           {data.category?.return_reason_alert &&
-          <div className="w-3/4 flex justify-center items-start gap-2">
+          <div className="lg:w-3/4 w-full flex justify-center items-start gap-2">
             <svg className="w-8 h-8 text-gray-500">
                 <use href="#infoFill"></use>
               </svg>

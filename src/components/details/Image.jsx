@@ -16,8 +16,8 @@ export default function Image({ images }) {
   if (!images) return <div>No images found.</div>;
 
   return (
-    <div id="detailSlider" className="flex justify-center items-center flex-col my-5 mx-3">
-      <div className="w-auto h-auto mb-4">
+    <div id="detailSlider" className="flex justify-center items-center flex-col lg:my-5 mx-3">
+      <div className="lg:w-auto w-[250px] lg:h-auto h-[250px] mb-4">
         <img
           src={mainImage}
           alt="Main Product"
