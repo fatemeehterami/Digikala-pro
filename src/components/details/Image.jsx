@@ -28,7 +28,7 @@ export default function Image({ images }) {
         <Splide
           ref={splideRef}
           hasTrack={false}
-          className="lg:w-[330px]"
+          className="lg:w-[330px] w-full"
           options={{
             type: "slide",
             perPage: 4,

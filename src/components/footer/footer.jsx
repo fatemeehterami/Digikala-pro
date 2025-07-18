@@ -1,9 +1,17 @@
 import { useState,useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 
 export default function Footer() {
   const { mobile  } = useContext(AuthContext);
+  const location = useLocation();
+  const getActiveMenu = () => {
+    if (location.pathname === '/') return 'home';
+    if (location.pathname.startsWith('/categories')) return 'categories';
+    if (location.pathname.startsWith('/shopping-card')) return 'cart';
+    if (location.pathname.startsWith('/profile') || location.pathname.startsWith('/user/login')) return 'profile';
+    return null;
+  };
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -14,6 +22,9 @@ export default function Footer() {
   const navigate = useNavigate()
   const handleShoppingCard = () => {
     navigate('/shopping-card');
+  };
+  const handleCategories = () => {
+    navigate('/categories');
   };
   const handleProfile = () => {
     if (!mobile) { 
@@ -32,7 +43,7 @@ export default function Footer() {
       {/* footer logo */}
         <div className="flex lg:justify-between justify-center items-center lg:w-auto w-full">
             <div className="mb-6 md:mb-0 hidden lg:inline">
-                <a href="/" className="flex items-center">
+                <a href="/" className="flex items-center" >
                     <img src="/imgs/digi-logo.png" className="h-7 me-3" alt="digi Logo" />
                 </a>
             </div>
@@ -260,31 +271,41 @@ export default function Footer() {
 </footer>
       <div className='bottom-0 fixed w-full bg-white py-3 px-4 z-50 block lg:hidden border-t border-t-gray-300'>
                 <div className='grid grid-cols-4'>
-                   <a className='flex justify-center items-center flex-col gap-1 decoration-0' href="/">
-                    <svg className="w-7 h-7">
-                        <use href="#home1Fill"/>
+                   <a className='flex justify-center items-center flex-col gap-1 cursor-pointer' 
+                   onClick={() => {
+                    navigate('/');
+                  }}>
+                    <svg className={`w-7 h-7 ${getActiveMenu() === 'home' ? 'text-[#ef4056]' : 'fill-gray-400'}`}>
+                        <use href="#home-icon"/>
                       </svg>
-                      <p className="text-sm">خانه</p>
+                      <p className={`text-xs ${getActiveMenu() === 'home' ? 'text-[#ef4056] font-bold' : ''}`}>خانه</p>
                    </a>
-                   <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'>
-                    <svg className="w-7 h-7 ">
+                   <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'
+                   onClick={() => {
+                    handleCategories();
+                  }}>
+                    <svg className={`w-7 h-7 ${getActiveMenu() === 'categories' ? 'text-[#ef4056]' : 'fill-gray-400'}`}>
                         <use href="#categoryOutline"/>
                       </svg>
-                      <p className="text-sm">دسته بندی</p>
+                      <p className={`text-xs ${getActiveMenu() === 'categories' ? 'text-[#ef4056] font-bold' : ''}`}>دسته بندی</p>
                    </div>
                    <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'
-                   onClick={handleShoppingCard}>
-                    <svg className="w-7 h-7 ">
+                   onClick={() => {
+                    handleShoppingCard();
+                  }}>
+                    <svg className={`w-7 h-7 ${getActiveMenu() === 'cart' ? 'text-[#ef4056]' : 'fill-gray-400'}`}>
                         <use href="#cartOff"/>
                       </svg>
-                      <p className="text-sm">سبد خرید</p>
+                      <p className={`text-xs ${getActiveMenu() === 'cart' ? 'text-[#ef4056] font-bold' : ''}`}>سبد خرید</p>
                    </div>
                    <div className='flex justify-center items-center flex-col gap-1 cursor-pointer'
-                   onClick={handleProfile}>
-                    <svg className="w-7 h-7 ">
+                    onClick={() => {
+                      handleProfile();
+                    }}>
+                    <svg className={`w-7 h-7 ${getActiveMenu() === 'profile' ? 'text-[#ef4056]' : ''}`}>
                         <use href="#profileOff"/>
                       </svg>
-                      <p className="text-sm">دیجی‌کالای من</p>
+                      <p className={`text-xs ${getActiveMenu() === 'profile' ? 'text-[#ef4056] font-bold' : ''}`}>دیجی‌کالای من</p>
                    </div>
                 </div>
             </div>

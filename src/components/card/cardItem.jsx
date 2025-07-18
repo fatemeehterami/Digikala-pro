@@ -16,7 +16,7 @@ export default function CardItem({ title, img, alt, id, score, price, status }) 
        h-full px-5 py-6 w-full transition-transform duration-200 border border-gray-100 hover:shadow-xl"
     >
       <img
-        className="w-full h-60  rounded-xl object-cover"
+        className=" rounded-xl object-cover"
         src={img}
         alt={alt}
       />

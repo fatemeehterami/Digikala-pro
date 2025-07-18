@@ -60,7 +60,7 @@ export default function DetailPage() {
   if (error) return <div className="text-center text-red-600 p-6">{error}</div>;
 
   return (
-    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-3">
+    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-5">
       <UrlPage titleFa={data.breadcrumb} categoryTitle={data.category_title} />
       <div className="grid lg:grid-cols-3 grid-cols-1  gap-5 w-full">
         <div className="col-span-1">

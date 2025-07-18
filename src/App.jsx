@@ -8,6 +8,7 @@ import DetailPage from './pages/details';
 import Login from './components/account/login';
 import VerifyPage from './components/account/verifyCode';
 import Profile from './components/account/profile';
+import Categories from './pages/categories';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/verify" element={<VerifyPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/categories" element={<Categories />} />
       </Routes>
       {!shouldHideLayout && <Footer />} 
     </>
