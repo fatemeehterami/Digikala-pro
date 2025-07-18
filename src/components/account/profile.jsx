@@ -6,7 +6,7 @@ import { getUserProfile } from '../../services/login';
 import SpecificModal from '../modal/specificModal';
 import moment from 'moment-jalaali';
 import { logout as apiLogout } from '../../services/login';
-
+moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 export default function Profile() {
   const navigate = useNavigate();
   const { mobile ,logout } = useContext(AuthContext);

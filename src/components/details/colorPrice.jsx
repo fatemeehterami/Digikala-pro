@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Seller from "./seller";
 
 
-export default function ColorsPrice({ variants, parameters, discountPrice }) {
+export default function ColorsPrice({ variants , price}) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [checked, setChecked] = useState(false);
 
@@ -93,7 +93,7 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
                     <svg className="w-4 h-4 text-black">
                       <use href="#toman"></use>
                     </svg>
-                    {(selectedColor.insurance.total_premium/10).toLocaleString("fa-IR")}
+                    {(selectedColor?.insurance?.total_premium/10).toLocaleString("fa-IR")}
                   </p>
                 </div>
               </div>
@@ -102,11 +102,12 @@ export default function ColorsPrice({ variants, parameters, discountPrice }) {
         )}
       </div>
 
-      <div className="col-span-1 border p-3 border-gray-200 rounded-lg bg-gray-100 hidden lg:block">
+      <div className="col-span-1 lg:border p-3 lg:border-gray-200 rounded-lg lg:bg-gray-100 block">
         <Seller
           data={selectedColorVariants}
           selectedColor={selectedColor}
           insuranceCheck={checked}
+          price={price}
         />
       </div>
     </div>

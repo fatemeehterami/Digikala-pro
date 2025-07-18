@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState , useRef } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProductDetails } from "../services/details";
 import Image from "../components/details/Image";
@@ -15,7 +15,22 @@ export default function DetailPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState("description");
+  const moreDetailsRef = useRef(null);
   const { id } = useParams();
+
+  const handleTabChangeAndScroll = (tabName) => {
+    setActiveTab(tabName);
+    setTimeout(() => {
+      if (moreDetailsRef.current) {
+        moreDetailsRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
+    }, 200);
+  };
 
   useEffect(() => {
     const getDetails = async () => {
@@ -24,6 +39,7 @@ export default function DetailPage() {
       try {
         const response = await fetchProductDetails(id);
         if (response?.result?.product) {
+          console.log(response.result.product)
           setData(response.result.product);
         } else {
           throw new Error("Invalid API response structure.");
@@ -62,8 +78,8 @@ export default function DetailPage() {
           <p className="text-black text-xl font-semibold my-2">{data.title_fa}</p>
           <hr className="text-gray-200" />
           <p className="text-gray-400 text-xs my-2">{data.title_en}</p>
-          <ScoreRow comments={data.comments?.count} questions={data.questions?.count} score={data.variants?.seller?.stars}/>
-          <ColorsPrice variants={data.variants} parameters={data.parameters} discountPrice={data.price?.discount_percent}/>
+          <ScoreRow comments={data.comments?.count} questions={data.questions?.count} onTabChange={handleTabChangeAndScroll} score={data.variants?.seller?.stars}/>
+          <ColorsPrice variants={data.variants}  price={data.price}/>
           <Features attributes={data.review?.attributes}/>
           {data.category?.return_reason_alert &&
           <div className=" w-full flex justify-center items-start gap-2 my-2">
@@ -108,8 +124,13 @@ export default function DetailPage() {
               <p className="text-xs">ضمانت اصل بودن کالا</p>
             </div>
       </div>    
-      <MoreDetails description={data?.review?.description} comments={data?.comments} questions={data?.questions}/>
-    
+      <MoreDetails 
+       ref={moreDetailsRef}
+       description={data?.review?.description}
+       comments={data?.comments} 
+       questions={data?.questions}
+       activeTab={activeTab}
+       onTabChange={setActiveTab}/>
     </div>
   );
 }

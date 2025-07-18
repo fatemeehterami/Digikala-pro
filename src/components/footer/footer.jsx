@@ -47,9 +47,9 @@ export default function Footer() {
         </div>
       {/* phones */}
         <div className="mb-3 mt-4 md:mt-3 md:mb-0 flex items-center  gap-2   text-neutral-700">
-            <p className="shrink-0 text-xs">تلفن پشتیبانی ۰۰۰۰۰۰۰۰ - ۰۲۱</p>
+            <p className="shrink-0 text-xs">تلفن پشتیبانی ۶۱۹۳۰۰۰۰-۰۲۱</p>
             <div className="px-5 text-neutral-400 block">|</div>
-            <p className="shrink-0 text-xs">۰۲۱-۰۰۰۰۰۰۰۰</p>
+            <p className="shrink-0 text-xs">۰۲۱-۹۱۰۰۰۱۰۰</p>
             <div className="px-5 text-neutral-400 hidden md:block">|</div>
             <p className="w-full mt-1 md:mt-0 text-xs hidden md:inline">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم</p>
         </div>
