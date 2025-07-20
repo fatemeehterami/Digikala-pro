@@ -213,14 +213,14 @@ const convertToPersianDigits = (str) => {
                                 {activeItem && (
                                           <>
                                             {/* Main category title */}
-                                            <div className="flex flex-col gap-2 mb-2">
+                                            {/* <div className="flex flex-col gap-2 mb-2">
                                               <Link
                                                 to={`/category/${activeItem.id}`}
                                                 className="text-sm font-bold text-gray-900 hover:text-red-600 cursor-pointer flex items-center gap-2"
                                               >
                                                 همه محصولات {activeItem.title}
                                               </Link>
-                                            </div>
+                                            </div> */}
                                             <div className="grid grid-cols-3 gap-6 w-full items-start justify-start">
                                             {/* Child categories */}
                                             {activeItem.children?.map((child, index) => (

@@ -60,7 +60,7 @@ export default function DetailPage() {
   if (error) return <div className="text-center text-red-600 p-6">{error}</div>;
 
   return (
-    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-5">
+    <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-5 h-full">
       <UrlPage titleFa={data.breadcrumb} categoryTitle={data.category_title} />
       <div className="grid lg:grid-cols-3 grid-cols-1  gap-5 w-full">
         <div className="col-span-1">
@@ -80,7 +80,7 @@ export default function DetailPage() {
           <p className="text-gray-400 text-xs my-2">{data.title_en}</p>
           <ScoreRow comments={data.comments?.count} questions={data.questions?.count} onTabChange={handleTabChangeAndScroll} score={data.variants?.seller?.stars}/>
           <ColorsPrice variants={data.variants}  price={data.price}/>
-          <Features attributes={data.review?.attributes}/>
+          <Features attributes={data.review?.attributes} onTabChange={handleTabChangeAndScroll}/>
           {data.category?.return_reason_alert &&
           <div className=" w-full flex justify-center items-start gap-2 my-2">
             <svg className="w-8 h-8 text-gray-500">

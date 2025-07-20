@@ -65,12 +65,12 @@ export default function Profile() {
         </svg>
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-200'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 divide-x divide-gray-200'>
        <div className='flex flex-col justify-start items-start divide-y divide-gray-200 w-full px-4'>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>نام و نام خانوادگی</p>
-            <div className='flex gap-2'>
-            <p>{profile.firstname}</p><p>{profile.lastname}</p>
+            <div className='flex gap-1'>
+            {profile.firstname && profile.lastname ? <><p >{profile.firstname}</p><p>{profile.lastname}</p></> : 'وارد نشده است.'}
             </div>
           </div>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>

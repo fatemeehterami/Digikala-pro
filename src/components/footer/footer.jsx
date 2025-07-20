@@ -1,10 +1,29 @@
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
 
 export default function Footer() {
   const { mobile  } = useContext(AuthContext);
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const shouldHideFooter = () => {
+    const path = location.pathname;
+
+    if (isMobile) {
+      return path.startsWith("/product/details") || path === "/categories" || path === "/profile" || path === '/shopping-card' || path.startsWith("/search");
+    }
+
+    return false;
+  };
   const getActiveMenu = () => {
     if (location.pathname === '/') return 'home';
     if (location.pathname.startsWith('/categories')) return 'categories';
@@ -38,8 +57,9 @@ export default function Footer() {
   };
     return (
       <>
-    <footer className="bg-white font-[iransans] border-t border-gray-200">
-    <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    {!shouldHideFooter() && 
+    <footer className=" bg-white  font-[iransans] border-t border-gray-200 ">
+    <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 ">
       {/* footer logo */}
         <div className="flex lg:justify-between justify-center items-center lg:w-auto w-full">
             <div className="mb-6 md:mb-0 hidden lg:inline">
@@ -268,7 +288,8 @@ export default function Footer() {
           </span>
       </div>
     </div>
-</footer>
+    </footer>
+      }
       <div className='bottom-0 fixed w-full bg-white py-3 px-4 z-50 block lg:hidden border-t border-t-gray-300'>
                 <div className='grid grid-cols-4'>
                    <a className='flex justify-center items-center flex-col gap-1 cursor-pointer' 
@@ -308,7 +329,7 @@ export default function Footer() {
                       <p className={`text-xs ${getActiveMenu() === 'profile' ? 'text-[#ef4056] font-bold' : ''}`}>دیجی‌کالای من</p>
                    </div>
                 </div>
-            </div>
+      </div>
 
 </>
 )

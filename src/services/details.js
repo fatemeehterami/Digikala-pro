@@ -16,3 +16,12 @@ export const fetchProductDetails = async (id) => {
     throw error;
   }
 };
+export const fetchSpecifications = async (id) => {
+  try {
+    const response = await api.get(`product/specifications/?id=${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("error", error);
+    throw error;
+  }
+};

@@ -49,15 +49,15 @@ export default function Categories() {
   }, [menu]);
 
   return (
-    <div className="h-[800px] px-2 w-full max-w-screen-xl shadow-lg z-50 block lg:hidden">
-      <div className="flex w-full h-full">
+    <div className="h-full px-2 w-full max-w-screen-xl shadow-lg z-50 block lg:hidden">
+      <div className="flex w-full h-[calc(100vh-178px)]">
         {/* Right Side */}
         <div dir="ltr" className="flex-col overflow-auto border-l divide-y divide-gray-200 border-l-neutral-100 w-32 bg-neutral-50">
           {menu.map((item, index) => (
             <div
               key={index}
               onClick={() => handleMainClick(item)}
-              className={`w-full h-24 flex items-center py-3 px-1 cursor-pointer justify-center group ${activeItem?.id === item.id ? "bg-white" : ""}`}
+              className={`w-full h-[72px] flex items-start py-1 px-1 cursor-pointer justify-center group ${activeItem?.id === item.id ? "bg-white" : ""}`}
             >
               <span className={`w-full h-full flex-col flex justify-center items-center gap-2 text-black ${activeItem?.id === item.id ? "text-red-500" : ""}`}>
                 <div>
@@ -72,17 +72,17 @@ export default function Categories() {
         </div>
 
         {/* Left Side */}
-        <div className="flex-col w-full overflow-auto px-4 py-1">
+        <div className="flex-col w-full px-4 py-1 overflow-y-auto pb-12">
           {activeItem && (
             <>
-              <div className="flex flex-col gap-2">
+              {/* <div className="flex flex-col gap-2">
                 <Link
                   to={`/category/${activeItem.id}`}
                   className="text-xs py-3 text-cyan-500 cursor-pointer flex items-center gap-2"
                 >
                   همه محصولات {activeItem.title}
                 </Link>
-              </div>
+              </div> */}
 
               <div className="flex flex-col w-full items-start justify-start divide-y divide-gray-200">
                 {activeItem?.children?.map((child, index) => (
