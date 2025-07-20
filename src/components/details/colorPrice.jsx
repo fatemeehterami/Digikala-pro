@@ -5,7 +5,7 @@ import Seller from "./seller";
 export default function ColorsPrice({ variants , price}) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [checked, setChecked] = useState(false);
-
+  const userIsLoggedIn = !!localStorage.getItem("token");
   const uniqueColors = variants?.filter(
     (v, index, self) =>
       index === self.findIndex((t) => t.color?.hex_code === v.color?.hex_code)
@@ -28,7 +28,41 @@ export default function ColorsPrice({ variants , price}) {
   const selectedColorVariants = variants.filter(
     (v) => v.color?.hex_code === selectedColor?.color?.hex_code
   );
-
+  const handleAddToCart = () => {
+    if (!selectedColor) {
+      alert("لطفا یک رنگ محصول را انتخاب کنید.");
+      return;
+    }
+  
+    const productToAdd = {
+      id: selectedColor.id,
+      color: selectedColor.color?.title_fa || "",
+      price: selectedColor.price?.selling_price || 0,
+      insurance: checked ? selectedColor.insurance?.total_premium : null,
+      warranty: selectedColor.warranty?.title_fa || "",
+      quantity: 1,
+    };
+  
+    try {
+      let existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+      const productIndex = existingCart.findIndex(item => item.id === productToAdd.id);
+      
+      if (productIndex === -1) {
+        existingCart.push(productToAdd);
+      } else {
+        existingCart[productIndex].quantity += 1;
+      }
+  
+      localStorage.setItem("cart", JSON.stringify(existingCart));
+      alert("محصول با موفقیت به سبد خرید اضافه شد.");
+    } catch (err) {
+      console.error("خطا در ذخیره‌سازی سبد خرید:", err);
+      alert("خطا در افزودن محصول به سبد خرید");
+    }
+  };
+  
+  
   return (
     <div className="w-full my-5 grid grid-cols-1 lg:grid-cols-2 gap-2">
       <div className="col-span-1">
@@ -108,6 +142,8 @@ export default function ColorsPrice({ variants , price}) {
           selectedColor={selectedColor}
           insuranceCheck={checked}
           price={price}
+          onAddToCart={handleAddToCart}
+          isLoggedIn={userIsLoggedIn}
         />
       </div>
     </div>

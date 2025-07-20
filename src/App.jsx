@@ -9,6 +9,7 @@ import Login from './components/account/login';
 import VerifyPage from './components/account/verifyCode';
 import Profile from './components/account/profile';
 import Categories from './pages/categories';
+import ShoppingCard from './pages/shoppingCard';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/user/verify" element={<VerifyPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/shopping-card" element={<ShoppingCard />} />
       </Routes>
       {!shouldHideLayout && <Footer />} 
     </>

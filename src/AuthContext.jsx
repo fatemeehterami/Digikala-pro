@@ -22,6 +22,7 @@ export function AuthProvider({ children }) {
     setMobile(null);
     localStorage.removeItem('mobile');
     localStorage.removeItem('token');
+    localStorage.removeItem('cart');
   };
 
   return (

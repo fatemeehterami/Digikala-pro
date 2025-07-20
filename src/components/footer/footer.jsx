@@ -40,7 +40,11 @@ export default function Footer() {
   const [openSection, setOpenSection] = useState(null);
   const navigate = useNavigate()
   const handleShoppingCard = () => {
-    navigate('/shopping-card');
+    if (!mobile) { 
+      navigate('/user/login');
+    }else{
+      navigate('/shopping-card')
+    }
   };
   const handleCategories = () => {
     navigate('/categories');

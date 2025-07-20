@@ -46,7 +46,7 @@ export default function CardItem({ title, img, alt, id, score, price, status }) 
         {price?.discount_percent ? (
           <>
             <div className="bg-[#d32f2f] text-white font-bold  text-sm py-0.5 px-2 rounded-full">
-              {price?.discount_percent.toLocaleString("fa-IR")}٪
+              {price?.discount_percent?.toLocaleString("fa-IR")}٪
             </div>
             <div className="flex flex-col justify-end items-center gap-2 ">
               <p className="flex justify-center items-center flex-row-reverse gap-2 text-lg">

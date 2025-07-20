@@ -13,6 +13,7 @@ export default function EditProfile({ onClose,profile = {} }) {
     email: '',
     nationalcode: '',
     password: '',
+    address:'',
     dateofbirth:'',
   });
 
@@ -22,6 +23,7 @@ export default function EditProfile({ onClose,profile = {} }) {
       lastname: profile.lastname || '',
       email: profile.email || '',
       nationalcode: profile.nationalcode || '',
+      address : profile.address || '',
       password: profile.password || '',
       dateofbirth: profile.dateofbirth
         ? moment(profile.dateofbirth).format('YYYY-MM-DD')
@@ -40,6 +42,7 @@ export default function EditProfile({ onClose,profile = {} }) {
     if (!formData.lastname.trim()) newErrors.lastname = 'نام خانوادگی الزامی است';
     if (!formData.password.trim()) newErrors.password = 'رمز عبور الزامی است';
     if (!formData.nationalcode.trim()) newErrors.nationalcode = 'کد ملی الزامی است';
+    if (!formData.address.trim()) newErrors.nationalcode = ' آدرس الزامی است';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -160,6 +163,22 @@ export default function EditProfile({ onClose,profile = {} }) {
               کد ملی :*
             </label>
             {errors.nationalcode && <p className="text-sm text-red-600 mt-1">{errors.nationalcode}</p>}
+          </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-red-500 peer"
+              placeholder=" "
+              required
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <label htmlFor="address" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              آدرس :*
+            </label>
+            {errors.address && <p className="text-sm text-red-600 mt-1">{errors.address}</p>}
           </div>
 
           <div className="relative z-0 w-full mb-5 group">

@@ -44,7 +44,11 @@ export default function Profile() {
     }, 200);
   };
   const handleShoppingCard = () => {
-    navigate('/shopping-card');
+    if(!mobile){
+      navigate('/user/login')
+    }else{
+      navigate('/shopping-card');
+    }
 };
   return (
     <div className='lg:border flex flex-col lg:border-gray-200 max-w-screen-xl mx-auto p-2 lg:rounded-2xl my-10 lg:shadow-xl'>
@@ -81,11 +85,15 @@ export default function Profile() {
             <p className='font-semibold text-lg'>رمز عبور</p>
             <p>{!profile.password ? 'وارد نشده است.' : '********'}</p>
           </div>
+          <div className='flex justify-between flex-col gap-3 items-start w-full py-5 '>
+            <p className='font-semibold text-lg'>آدرس</p>
+            <p>{!profile.address ? 'وارد نشده است.' : profile.address}</p>
+          </div>
        </div>
        <div className='flex flex-col justify-start items-start divide-y divide-gray-200 w-full px-4'>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>کدملی</p>
-            <p>{convertToPersianDigits(profile.nationalcode)}</p>
+            <p>{!profile.nationalcode ? 'وارد نشده است.' : convertToPersianDigits(profile.nationalcode)}</p>
           </div>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>تاریخ تولد</p>
@@ -96,6 +104,8 @@ export default function Profile() {
             <p>{!profile.email ? 'وارد نشده است.' : profile.email}</p>
           </div>
        </div>
+       
+       
       </div>
       {modalType === 'edit' && (
         <EditProfile onClose={() => setModalType(null)} profile={profile} />

@@ -28,8 +28,12 @@ export default function Header() {
       navigate('/profile');
   };
   const handleShoppingCard = () => {
-    navigate('/shopping-card');
-};
+    if (!mobile) { 
+      navigate('/user/login');
+    }else{
+      navigate('/shopping-card');
+    }
+  };
   const handleLogout = async () => {
     try {
       await apiLogout();
@@ -162,7 +166,7 @@ const convertToPersianDigits = (str) => {
             </div>
 
             {/* shopping card */}
-            <div className="mr-10 lg:flex hidden">
+            <div className="mr-10 lg:flex hidden cursor-pointer" onClick={handleShoppingCard}>
               <svg className="w-7 h-7 text-black">
                 <use href="#shoppingCard-icon" />
               </svg>
