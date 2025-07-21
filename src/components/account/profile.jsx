@@ -12,6 +12,12 @@ export default function Profile() {
   const { mobile ,logout } = useContext(AuthContext);
   const [modalType, setModalType] = useState(null);
   const [profile, setProfile] = useState({});
+  
+  useEffect(() => {
+    if (mobile && profile?.address) {
+      localStorage.setItem('address', profile.address);
+    }
+  }, [mobile, profile?.address]);
 
   const convertToPersianDigits = (str) => {
     if (!str) return '';
@@ -69,7 +75,7 @@ export default function Profile() {
         </svg>
         </div>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 divide-x divide-gray-200'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 divide-x divide-gray-200 pb-12'>
        <div className='flex flex-col justify-start items-start divide-y divide-gray-200 w-full px-4'>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>نام و نام خانوادگی</p>

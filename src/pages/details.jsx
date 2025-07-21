@@ -79,7 +79,7 @@ export default function DetailPage() {
           <hr className="text-gray-200" />
           <p className="text-gray-400 text-xs my-2">{data.title_en}</p>
           <ScoreRow comments={data.comments?.count} questions={data.questions?.count} onTabChange={handleTabChangeAndScroll} score={data.variants?.seller?.stars}/>
-          <ColorsPrice variants={data.variants}  price={data.price}/>
+          <ColorsPrice orderLimit={data.price.order_limit} variants={data.variants}  price={data.price} id={data.id} discount={data.price?.discount_percent} image={data.images.main}/>
           <Features attributes={data.review?.attributes} onTabChange={handleTabChangeAndScroll}/>
           {data.category?.return_reason_alert &&
           <div className=" w-full flex justify-center items-start gap-2 my-2">

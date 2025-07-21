@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Seller from "./seller";
+import SpecificModal from '../modal/specificModal';
 
-
-export default function ColorsPrice({ variants , price}) {
+export default function ColorsPrice({ variants , price ,image ,id, discount ,orderLimit}) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [checked, setChecked] = useState(false);
   const userIsLoggedIn = !!localStorage.getItem("token");
+  const [modal, setModal] = useState(null);
+
   const uniqueColors = variants?.filter(
     (v, index, self) =>
       index === self.findIndex((t) => t.color?.hex_code === v.color?.hex_code)
@@ -29,38 +31,51 @@ export default function ColorsPrice({ variants , price}) {
     (v) => v.color?.hex_code === selectedColor?.color?.hex_code
   );
   const handleAddToCart = () => {
-    if (!selectedColor) {
-      alert("لطفا یک رنگ محصول را انتخاب کنید.");
+    if (!selectedColor || !selectedColor.id) {
+      setModal({
+        text: "لطفا یک رنگ را انتخاب کنید.",
+        btnText:'باشه',
+        onClose: () => setModal(null),
+      });
       return;
     }
   
     const productToAdd = {
-      id: selectedColor.id,
-      color: selectedColor.color?.title_fa || "",
-      price: selectedColor.price?.selling_price || 0,
+      id: id,
+      img: image,
+      color: selectedColor.color?.title_fa,
+      limit: orderLimit,
+      price: selectedColor.price?.selling_price,
+      mainPrice: selectedColor.price?.rrp_price,
+      discount: selectedColor.price?.is_promotion || null,
       insurance: checked ? selectedColor.insurance?.total_premium : null,
-      warranty: selectedColor.warranty?.title_fa || "",
+      warranty: selectedColor.warranty?.title_fa,
       quantity: 1,
     };
   
     try {
-      let existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingProductIndex = existingCart.findIndex(item => item.id === productToAdd.id);
   
-      const productIndex = existingCart.findIndex(item => item.id === productToAdd.id);
-      
-      if (productIndex === -1) {
-        existingCart.push(productToAdd);
+      let updatedCart;
+      if (existingProductIndex !== -1) {
+        existingCart[existingProductIndex].quantity += 1;
+        updatedCart = existingCart;
       } else {
-        existingCart[productIndex].quantity += 1;
+        updatedCart = [...existingCart, productToAdd];
       }
   
-      localStorage.setItem("cart", JSON.stringify(existingCart));
-      alert("محصول با موفقیت به سبد خرید اضافه شد.");
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setModal({
+        text: "محصول به سبد خرید اضافه شد.",
+        btnText:'باشه',
+        onClose: () => setModal(null),
+      });
     } catch (err) {
       console.error("خطا در ذخیره‌سازی سبد خرید:", err);
-      alert("خطا در افزودن محصول به سبد خرید");
     }
   };
+  
   
   
   return (
@@ -142,10 +157,18 @@ export default function ColorsPrice({ variants , price}) {
           selectedColor={selectedColor}
           insuranceCheck={checked}
           price={price}
+          discount={discount}
           onAddToCart={handleAddToCart}
           isLoggedIn={userIsLoggedIn}
         />
       </div>
+      {modal && (
+          <SpecificModal
+            text={modal.text}
+            btnText={modal.btnText}
+            onClose={modal.onClose}
+          />
+        )}
     </div>
   );
 }

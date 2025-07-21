@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setMobile(null);
     localStorage.removeItem('mobile');
+    localStorage.removeItem('address');
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
   };

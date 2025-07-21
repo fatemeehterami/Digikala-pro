@@ -1,4 +1,4 @@
-export default function Seller({ selectedColor, data, insuranceCheck, price, onAddToCart, isLoggedIn }) {
+export default function Seller({ selectedColor, data, insuranceCheck, price, onAddToCart, isLoggedIn ,discount }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
@@ -35,7 +35,7 @@ export default function Seller({ selectedColor, data, insuranceCheck, price, onA
               {(price?.rrp_price / 10).toLocaleString("fa-IR")}
             </p>
             <p className="bg-[#d32f2f] text-white font-bold text-[12px] py-0.5 px-2 rounded-full">
-              {price?.discount_percent?.toLocaleString("fa-IR")}٪
+              {price.discount_percent ? price?.discount_percent?.toLocaleString("fa-IR") : discount?.toLocaleString("fa-IR")}٪
             </p>
           </div>
         )}

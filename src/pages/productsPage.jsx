@@ -68,8 +68,8 @@ const ProductsPage = () => {
       {error && <p className="text-red-500">{error}</p>}
 
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 w-full ">
-        {results.map((item) => (
-          <div key={item.id} className="w-full h-full">
+        {results.map((item,index) => (
+          <div key={index} className="w-full h-full">
             <CardItem
               img={item.images.main}
               title={item.title_fa}

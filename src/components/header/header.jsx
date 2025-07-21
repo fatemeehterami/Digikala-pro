@@ -131,7 +131,7 @@ const convertToPersianDigits = (str) => {
                   </svg>
 
                   {/* dropdown */}
-                  <div className="absolute top-full left-3 mt-0.5 w-48  bg-white border border-gray-200   rounded-lg shadow-lg hidden flex-col items-center group-hover:flex z-50">
+                  <div className="absolute top-full left-3  w-48  bg-white border border-gray-200   rounded-lg shadow-lg hidden flex-col items-center group-hover:flex z-50">
                     <a className="cursor-pointer flex justify-between items-center hover:bg-gray-100 text-lg p-4 transition-colors  w-full border-b border-b-gray-200" onClick={handleProfile}>
                     {convertToPersianDigits(mobile)}
                       <svg className="w-3 h-4 text-black -rotate-90">
