@@ -48,7 +48,7 @@ export default function VerifyPage() {
 
       login(mobile);
 
-      navigate('/');
+      navigate('/profile');
     } catch (err) {
       setModal({
         text: 'کد اشتباه است',

@@ -1,7 +1,6 @@
 import { useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import SpecificModal from '../components/modal/specificModal';
-import { handlePayment } from '../services/zarinpal';
 export default function ShoppingCard() {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState([]);
@@ -28,7 +27,7 @@ export default function ShoppingCard() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-5 h-full p-5 border-gray-200 border rounded-lg">
+      <div className="max-w-screen-xl my-2 flex flex-col mx-auto w-full px-5 h-full p-5 lg:border-gray-200 lg:border rounded-lg">
         <p>سبد خرید شما خالی است.</p>
       </div>
     );
@@ -41,8 +40,12 @@ export default function ShoppingCard() {
         btnText: "باشه",
         onClose: () => setModal(null),
       });
-    } else {
-      handlePayment(totalPayable);
+    } else{
+      setModal({
+        text: "درگاه پرداخت به زودی فعال میشود",
+        btnText: "باشه",
+        onClose: () => setModal(null),
+      });
     }
   };
 

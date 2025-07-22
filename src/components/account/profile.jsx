@@ -91,24 +91,24 @@ export default function Profile() {
             <p className='font-semibold text-lg'>رمز عبور</p>
             <p>{!profile.password ? 'وارد نشده است.' : '********'}</p>
           </div>
-          <div className='flex justify-between flex-col gap-3 items-start w-full py-5 '>
-            <p className='font-semibold text-lg'>آدرس</p>
-            <p>{!profile.address ? 'وارد نشده است.' : profile.address}</p>
-          </div>
        </div>
        <div className='flex flex-col justify-start items-start divide-y divide-gray-200 w-full px-4'>
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>کدملی</p>
             <p>{!profile.nationalcode ? 'وارد نشده است.' : convertToPersianDigits(profile.nationalcode)}</p>
           </div>
-          <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
+          {/* <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>تاریخ تولد</p>
             <p>{!profile.dateofbirth ? 'وارد نشده است.' : moment(profile.dateofbirth).format('jYYYY/jMM/jDD')}</p>
-          </div>
+            </div> */}
           <div className='flex justify-between flex-col gap-3 items-start w-full py-5'>
             <p className='font-semibold text-lg'>ایمیل</p>
             <p>{!profile.email ? 'وارد نشده است.' : profile.email}</p>
           </div>
+            <div className='flex justify-between flex-col gap-3 items-start w-full py-5 '>
+              <p className='font-semibold text-lg'>آدرس</p>
+              <p>{!profile.address ? 'وارد نشده است.' : profile.address}</p>
+            </div>
        </div>
        
        

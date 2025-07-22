@@ -39,7 +39,6 @@ export default function DetailPage() {
       try {
         const response = await fetchProductDetails(id);
         if (response?.result?.product) {
-          console.log(response.result.product)
           setData(response.result.product);
         } else {
           throw new Error("Invalid API response structure.");

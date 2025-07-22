@@ -119,7 +119,7 @@ const MoreDetails = forwardRef(
                           {specification.title}
                         </h4>
                         <div className="grid grid-cols-2 gap-x-1 gap-y-2 text-sm">
-                          {shownAttributes.map((attribute, i) => (
+                          {shownAttributes?.map((attribute, i) => (
                             <React.Fragment key={i}>
                               <div className="text-gray-500">
                                 {attribute.title}
@@ -131,7 +131,7 @@ const MoreDetails = forwardRef(
                           ))}
                         </div>
 
-                        {specification.attributes.length > 3 && (
+                        {specification?.attributes?.length > 3 && (
                           <button
                             onClick={() => toggleExpanded(index)}
                             className="text-left text-cyan-500 text-sm py-2 flex justify-start gap-2 items-center"

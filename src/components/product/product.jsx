@@ -8,7 +8,6 @@ export default function Product() {
         const getProduct = async () => {
             try {
               const data = await fetchProduct(1,10);
-              console.log(data.result);
               setProduct(data.result);
               
             } catch (err) {
