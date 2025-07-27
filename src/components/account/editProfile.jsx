@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect, useMemo } from 'react';
 import { AuthContext } from '../../AuthContext';
 import { registerUser } from '../../services/login';
-import moment from 'moment-jalaali';
 import SpecificModal from '../modal/specificModal';
 export default function EditProfile({ onClose,profile = {} }) {
   const { mobile } = useContext(AuthContext);
@@ -25,7 +24,7 @@ export default function EditProfile({ onClose,profile = {} }) {
       nationalcode: profile.nationalcode || '',
       address : profile.address || '',
       password: profile.password || '',
-      dateofbirth: profile.dateofbirth || moment().format('jYYYY/jMM/jDD')
+      dateofbirth: profile.dateofbirth || new Date().toISOString().split("T")[0]
     });
   }, [profile]);
 
