@@ -1,10 +1,5 @@
-import { useEffect } from "react";
 
 export default function Seller({ selectedColor, data, insuranceCheck, price, onAddToCart, isLoggedIn ,discount }) {
-  useEffect(()=>{
-    console.log(discount)
-
-  })
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
